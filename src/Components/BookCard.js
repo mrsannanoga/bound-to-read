@@ -40,7 +40,7 @@ const BookReleaseDate = styled.p`
 const BookCard = ({ book }) => {
   return (
     <CardContainer>
-      <Card>
+<Card>
         <BookCover src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
         <BookInfo>
           <BookTitle>{book.volumeInfo.title}</BookTitle>

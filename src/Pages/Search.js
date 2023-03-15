@@ -68,7 +68,7 @@ const Search = () => {
         <SearchButton type="submit">Search</SearchButton>
       </SearchForm>
       <Results>
-        {books.map((book) => (
+      {books.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
       </Results>
@@ -77,3 +77,4 @@ const Search = () => {
 };
 
 export default Search;
+
