@@ -8,6 +8,7 @@ import Search from './Pages/Search';
 import List from './Pages/List';
 import Footer from './Components/Footer'
 
+
 // Import Global styles
 import GlobalStyle from './Components/GlobalStyle';
 
