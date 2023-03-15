@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 const ListContainer = styled.div`
   display: flex;
@@ -32,6 +33,14 @@ const Item = styled.li`
   }
 `;
 
+const Input = styled.input`
+  font-size: 20px;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -53,31 +62,93 @@ const Button = styled.button`
   }
 `;
 
-const List = () => {
-  const [items, setItems] = useState([]);
+const FormContainer = styled.div`
+  display: flex;
+  margin-top: 30px;
+`;
 
-  const addItem = (item) => {
-    setItems([...items, item]);
+const FormInput = styled.input`
+  font-size: 20px;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+`;
+
+const FormButton = styled.button`
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: #1c6fd6;
+  }
+`;
+
+const List = () => {
+  const [items, setItems] = useState([]); // State for storing the list of books
+  const [query, setQuery] = useState("");
+  const [savedItems, setSavedItems] = useState([]); // State for storing saved items
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(
+        `https://www.googleapis.com/books/v1/volumes?q=${query}`
+      );
+      const books = response.data.items.map((item) => item.volumeInfo.title);
+      setItems((prevItems) => [...prevItems, ...books]); // Adding the books to the list while preserving the existing items
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const clearItems = () => {
-    setItems([]);
+    setItems([]); // Clearing the items list
   };
-
+  
+  const saveItems = () => {
+  setSavedItems((prevSavedItems) => [...prevSavedItems, ...items]); // Saving the items to the savedItems list while preserving the existing saved items
+  setItems([]); // Clearing the items list after saving
+  };
+  
   return (
-    <ListContainer>
-      <Title>List</Title>
-      <ItemList>
-        {items.map((item, index) => (
-          <Item key={index}>{item}</Item>
-        ))}
-      </ItemList>
-      <ButtonContainer>
-        <Button onClick={() => addItem("New Item")}>Add Item</Button>
-        <Button onClick={() => clearItems()}>Clear List</Button>
-      </ButtonContainer>
-    </ListContainer>
+  <ListContainer>
+  <Title>Book List</Title>
+  <FormContainer>
+  <FormInput
+         type="text"
+         placeholder="Search for a book"
+         value={query}
+         onChange={handleInputChange}
+       />
+  <FormButton onClick={handleSearch}>Search</FormButton>
+  </FormContainer>
+  <ButtonContainer>
+  <Button onClick={saveItems}>Save Items</Button>
+  <Button onClick={clearItems}>Clear Items</Button>
+  </ButtonContainer>
+  <ItemList>
+  {items.map((item, index) => (
+  <Item key={index}>{item}</Item>
+  ))}
+  </ItemList>
+  <Title>Saved Items</Title>
+  <ItemList>
+  {savedItems.map((item, index) => (
+  <Item key={index}>{item}</Item>
+  ))}
+  </ItemList>
+  </ListContainer>
   );
-};
+  };
+  
+  export default List;
 
-export default List;
