@@ -1,9 +1,18 @@
+// This is the main component of the app
 
+// Import pages
+import Nav from './Components/Nav';
+// Import Global styles
+import GlobalStyle from './Components/GlobalStyle';
+
+// Router
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello Final-Project</h1>
+      <GlobalStyle />
+      <Nav />
     </div>
   );
 }
