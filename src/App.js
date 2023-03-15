@@ -6,6 +6,7 @@ import Nav from './Components/Nav';
 import Home from './Pages/Home';
 import Search from './Pages/Search';
 import List from './Pages/List';
+import Footer from './Components/Footer'
 
 // Import Global styles
 import GlobalStyle from './Components/GlobalStyle';
@@ -21,6 +22,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/list" element={<List />} />
         </Routes>
+        <Footer/>
       </Router>
     </div>
   );
