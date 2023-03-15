@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         font-size: 62.5%;
+        font-family: 'Poppins', sans-serif;
     }
     h1 {
         font-size: 3rem;
