@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import axios from "axios";
 
 const ListContainer = styled.div`
   display: flex;
@@ -91,22 +90,14 @@ const FormButton = styled.button`
 
 const List = () => {
   const [items, setItems] = useState([]); // State for storing the list of books
-  const [query, setQuery] = useState("");
   const [savedItems, setSavedItems] = useState([]); // State for storing saved items
 
-  const handleInputChange = (event) => {
-    setQuery(event.target.value);
-  };
-
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${query}`
-      );
-      const books = response.data.items.map((item) => item.volumeInfo.title);
-      setItems((prevItems) => [...prevItems, ...books]); // Adding the books to the list while preserving the existing items
-    } catch (error) {
-      console.error(error);
+  const handleAddItem = (event) => {
+    event.preventDefault();
+    const newItem = event.target.item.value;
+    if (newItem !== "") {
+      setItems((prevItems) => [...prevItems, newItem]);
+      event.target.item.value = "";
     }
   };
 
@@ -115,40 +106,39 @@ const List = () => {
   };
   
   const saveItems = () => {
-  setSavedItems((prevSavedItems) => [...prevSavedItems, ...items]); // Saving the items to the savedItems list while preserving the existing saved items
-  setItems([]); // Clearing the items list after saving
+    setSavedItems((prevSavedItems) => [...prevSavedItems, ...items]); // Saving the items to the savedItems list while preserving the existing saved items
+    setItems([]); // Clearing the items list after saving
   };
   
   return (
-  <ListContainer>
-  <Title>Book List</Title>
-  <FormContainer>
-  <FormInput
-         type="text"
-         placeholder="Search for a book"
-         value={query}
-         onChange={handleInputChange}
-       />
-  <FormButton onClick={handleSearch}>Search</FormButton>
-  </FormContainer>
-  <ButtonContainer>
-  <Button onClick={saveItems}>Save Items</Button>
-  <Button onClick={clearItems}>Clear Items</Button>
-  </ButtonContainer>
-  <ItemList>
-  {items.map((item, index) => (
-  <Item key={index}>{item}</Item>
-  ))}
-  </ItemList>
-  <Title>Saved Items</Title>
-  <ItemList>
-  {savedItems.map((item, index) => (
-  <Item key={index}>{item}</Item>
-  ))}
-  </ItemList>
-  </ListContainer>
-  );
-  };
-  
-  export default List;
+    <ListContainer>
+      <Title>Book List</Title>
+      <FormContainer onSubmit={handleAddItem}>
+        <FormInput
+          type="text"
+          placeholder="Add a book"
+          name="item"
+        />
+        <FormButton type="submit">Add</FormButton>
+</FormContainer>
+<ItemList>
+{items.map((item, index) => (
+<Item key={index}>{item}</Item>
+))}
+</ItemList>
+<ButtonContainer>
+<Button onClick={clearItems}>Clear</Button>
+<Button onClick={saveItems}>Save</Button>
+</ButtonContainer>
+<Title>Saved Items</Title>
+<ItemList>
+{savedItems.map((item, index) => (
+<Item key={index}>{item}</Item>
+))}
+</ItemList>
+</ListContainer>
+);
+};
+
+export default List;
 
