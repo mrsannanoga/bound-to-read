@@ -15,7 +15,7 @@ justify-content: space-around;
 `
 
 
-export default function App() {
+const PageFooter = () => {
   return (
     <Footer className='text-center text-white'>
       <Container className='p-4'>
@@ -26,3 +26,5 @@ export default function App() {
     </Footer>
   );
 }
+
+export default PageFooter;
