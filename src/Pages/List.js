@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Draggable } from "react-draggable";
 
 const ListContainer = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ const Item = styled.li`
   &:last-child {
     border-bottom: none;
   }
+  background-color: ${(props) => (props.isDragging ? "#ccc" : "white")};
 `;
 
 const Input = styled.input`
@@ -61,7 +63,7 @@ const Button = styled.button`
   }
 `;
 
-const FormContainer = styled.div`
+const FormContainer = styled.form`
   display: flex;
   margin-top: 30px;
 `;
@@ -89,56 +91,69 @@ const FormButton = styled.button`
 `;
 
 const List = () => {
-  const [items, setItems] = useState([]); // State for storing the list of books
-  const [savedItems, setSavedItems] = useState([]); // State for storing saved items
+  const [items, setItems] = useState([]);
+  const [savedItems, setSavedItems] = useState([]);
+
+  useEffect(() => {
+    const savedItemsFromStorage = JSON.parse(localStorage.getItem("savedItems"));
+    if (savedItemsFromStorage) {
+      setSavedItems(savedItemsFromStorage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("savedItems", JSON.stringify(savedItems));
+  }, [savedItems]);
 
   const handleAddItem = (event) => {
     event.preventDefault();
     const newItem = event.target.item.value;
     if (newItem !== "") {
-      setItems((prevItems) => [...prevItems, newItem]);
-      event.target.item.value = "";
+      setItems((prevItems) => [
+        ...prevItems,
+        { id: Math.random(), content: newItem },
+      ]);
+      event.target.reset();
     }
   };
 
-  const clearItems = () => {
-    setItems([]); // Clearing the items list
+  const handleDeleteItem = (id) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
-  
-  const saveItems = () => {
-    setSavedItems((prevSavedItems) => [...prevSavedItems, ...items]); // Saving the items to the savedItems list while preserving the existing saved items
-    setItems([]); // Clearing the items list after saving
-  };
-  
-  return (
-    <ListContainer>
-      <Title>Book List</Title>
-      <FormContainer onSubmit={handleAddItem}>
-        <FormInput
-          type="text"
-          placeholder="Add a book"
-          name="item"
-        />
-        <FormButton type="submit">Add</FormButton>
-</FormContainer>
+
+  const handleDrag = (index) => (e, ui) => {
+    const { x, y } = ui;
+setItems((prevItems) => {
+  const newItems = [...prevItems];
+  newItems[index].x = x;
+  newItems[index].y = y;
+  return newItems;
+});
+};
+
+return (
+<ListContainer>
+<Title>List of Books</Title>
 <ItemList>
 {items.map((item, index) => (
-<Item key={index}>{item}</Item>
+<Draggable key={item.id} onDrag={handleDrag(index)}>
+<Item isDragging={item.isDragging}>
+{item.content}
+<Button onClick={() => handleDeleteItem(item.id)}>Delete</Button>
+</Item>
+</Draggable>
 ))}
 </ItemList>
+<FormContainer onSubmit={handleAddItem}>
+<FormInput type="text" name="item" placeholder="Book title" />
+<FormButton type="submit">Add Book</FormButton>
+</FormContainer>
 <ButtonContainer>
-<Button onClick={clearItems}>Clear</Button>
-<Button onClick={saveItems}>Save</Button>
+<Button onClick={() => setSavedItems(items)}>Save List</Button>
+<Button onClick={() => setItems(savedItems)}>Load List</Button>
 </ButtonContainer>
-<Title>Saved Items</Title>
-<ItemList>
-{savedItems.map((item, index) => (
-<Item key={index}>{item}</Item>
-))}
-</ItemList>
 </ListContainer>
 );
 };
 
 export default List;
-
