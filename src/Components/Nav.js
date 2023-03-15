@@ -8,7 +8,7 @@ const Navbar = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #333;
+  background-color: #FE7F2D;
 `;
 
 const Logo = styled.div`
@@ -27,7 +27,7 @@ const NavLink = styled(Link)`
   color: #fff;
   cursor: pointer;
   text-decoration: none;
-  margin-right: 2rem;
+  margin-right: 5rem;
 
   &:hover {
     color: #ccc;
