@@ -7,7 +7,12 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-    }`;
+        font-size: 62.5%;
+    }
+    h1 {
+        font-size: 3rem;
+    }
+    `;
 
 // Export the GlobalStyle component
 export default GlobalStyle;

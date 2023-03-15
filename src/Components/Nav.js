@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 
 const Navbar = styled.div`
   display: flex;
@@ -10,19 +12,26 @@ const Navbar = styled.div`
 `;
 
 const Logo = styled.div`
-  font-size: 1.5rem;
+  font-size: 4rem;
   color: #fff;
 `;
 
 const NavLinks = styled.ul`
   display: flex;
   list-style-type: none;
-  gap: 1rem;
+  gap: 3rem;
+  font-size: 4rem;
 `;
 
-const NavLink = styled.li`
+const NavLink = styled(Link)`
   color: #fff;
   cursor: pointer;
+  text-decoration: none;
+  margin-right: 2rem;
+
+  &:hover {
+    color: #ccc;
+  }
 `;
 
 const Nav = () => {
@@ -30,12 +39,13 @@ const Nav = () => {
     <Navbar>
       <Logo>Logo</Logo>
       <NavLinks>
-        <NavLink>Home</NavLink>
-        <NavLink>Search</NavLink>
-        <NavLink>My List</NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/search">Search</NavLink>
+        <NavLink to="/list">My List</NavLink>
       </NavLinks>
     </Navbar>
   );
 };
 
 export default Nav;
+
