@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import placeholderImage from '../assets/placeholder.webp';
 
 const CardContainer = styled.div`
   display: flex;
@@ -38,10 +39,12 @@ const BookReleaseDate = styled.p`
 `;
 
 const BookCard = ({ book }) => {
+  const thumbnail = book.volumeInfo.imageLinks?.thumbnail || placeholderImage;
+
   return (
     <CardContainer>
       <Card>
-        <BookCover src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+        <BookCover src={thumbnail} alt={book.volumeInfo.title} />
         <BookInfo>
           <BookTitle>{book.volumeInfo.title}</BookTitle>
           <BookAuthor>{book.volumeInfo.authors.join(', ')}</BookAuthor>
