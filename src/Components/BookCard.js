@@ -53,14 +53,18 @@ const SaveButton = styled.button`
 
 const BookCard = ({ book, handleSave }) => {
   const thumbnail = book.volumeInfo.imageLinks?.thumbnail || placeholderImage;
-
+  const authors = book.volumeInfo.authors || [];
   return (
     <CardContainer>
-      <Card whileHover="hover" variants={hoverVariants} initial="initial">
+      <Card
+        whileHover="hover"
+        variants={hoverVariants}
+        initial="initial"
+      >
         <BookCover src={thumbnail} alt={book.volumeInfo.title} />
         <BookInfo>
           <BookTitle>{book.volumeInfo.title}</BookTitle>
-          <BookAuthor>{book.volumeInfo.authors.join(", ")}</BookAuthor>
+          <BookAuthor>{authors.join(', ')}</BookAuthor>
           <BookReleaseDate>{book.volumeInfo.publishedDate}</BookReleaseDate>
           <SaveButton onClick={() => handleSave(book)}>Save to List</SaveButton>
         </BookInfo>
