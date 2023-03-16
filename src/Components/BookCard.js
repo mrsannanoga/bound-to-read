@@ -43,13 +43,8 @@ const BookCard = ({ book }) => {
 
   return (
     <CardContainer>
-<<<<<<< HEAD
-<Card>
-        <BookCover src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
-=======
       <Card>
         <BookCover src={thumbnail} alt={book.volumeInfo.title} />
->>>>>>> 96ffbd3f7cdd974eefb962083dddf32eaadad157
         <BookInfo>
           <BookTitle>{book.volumeInfo.title}</BookTitle>
           <BookAuthor>{book.volumeInfo.authors.join(', ')}</BookAuthor>
