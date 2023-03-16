@@ -30,12 +30,20 @@ const ItemList = styled.ul`
 
 const Item = styled.li`
   padding: 10px;
-  font-size: 20px;
+  font-size: 30px;
   border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
   &:last-child {
     border-bottom: none;
   }
   background-color: ${(props) => (props.isDragging ? "#ccc" : "white")};
+`;
+
+const BookCover = styled.img`
+  height: 60px;
+  margin-right: 10px;
 `;
 
 const List = () => {
@@ -46,13 +54,14 @@ const List = () => {
     <ListContainer>
       <Title>List of Books</Title>
       <ItemList>
-        {savedBooks.map((book, index) => (
-          <Draggable key={book.id}>
-            <Item isDragging={book.isDragging}>
-              {book.volumeInfo.title}
-            </Item>
-          </Draggable>
-        ))}
+      {savedBooks.map((book, index) => (
+  <Draggable key={book.id} axis="y">
+    <Item isDragging={book.isDragging}>
+      <BookCover src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+      {book.volumeInfo.title}
+    </Item>
+  </Draggable>
+))}
       </ItemList>
     </ListContainer>
   );
