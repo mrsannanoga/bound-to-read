@@ -1,40 +1,41 @@
 import React, { useState, useContext } from "react";
 
-
-
 import styled from "styled-components";
 import BookCard from "../Components/BookCard";
 // Import BooksContext
 import BooksContext from "../Components/BooksContext";
 
-
-
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2rem;
 `;
 
 const SearchForm = styled.form`
   display: flex;
   gap: 1rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
 `;
 
 const SearchInput = styled.input`
-  font-size: 1rem;
+  font-size: 2rem;
   padding: 0.5rem;
+  width: 40rem;
+
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 40px;
 `;
 
 const SearchButton = styled.button`
   font-size: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #333;
+  background-color: rgb(2, 2, 72);
   color: #fff;
   border: none;
-  border-radius: 4px;
+  width: 10rem;
+  border-radius: 40px;
   cursor: pointer;
 `;
 
@@ -51,7 +52,7 @@ const Search = () => {
 
   // Use the BooksContext
   const { savedBooks, setSavedBooks } = useContext(BooksContext);
-  
+
   // Define handleSave
   const handleSave = (book) => {
     setSavedBooks([...savedBooks, book]);
@@ -74,13 +75,12 @@ const Search = () => {
 
   return (
     <SearchContainer>
-      <h1>Search</h1>
       <SearchForm onSubmit={handleSearch}>
         <SearchInput
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Author name"
+          placeholder="  search author or title"
         />
         <SearchButton type="submit">Search</SearchButton>
       </SearchForm>
@@ -95,4 +95,3 @@ const Search = () => {
 };
 
 export default Search;
-
