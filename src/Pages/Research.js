@@ -5,17 +5,13 @@ function Research() {
   const [results, setResults] = useState([]);
 
   const handleSearch = async () => {
-    const url = `https://ia800204.us.archive.org/fulltext/inside.php?item_id=designevaluation25clin&doc=designevaluation25clin&path=/27/items/designevaluation25clin&q=${encodeURIComponent(query)}`;
+    const url = `https://openlibrary.org/subjects/${encodeURIComponent(query)}.json?details=true`;
     const response = await fetch(url);
-    const data = await response.text();
+    const data = await response.json();
 
-    // Extract the JSON object from the response
-    const startIndex = data.indexOf('{');
-    const endIndex = data.lastIndexOf('}') + 1;
-    const jsonString = data.slice(startIndex, endIndex);
-
-    const searchResults = JSON.parse(jsonString).matches;
-    setResults(searchResults);
+    // Extract the array of works from the response
+    const works = data.works;
+    setResults(works);
   };
 
   return (
@@ -24,17 +20,10 @@ function Research() {
       <button onClick={handleSearch}>Search</button>
 
       <ul>
-        {results.map((result, i) => (
-          <li key={i}>
-            <p>{result.text}</p>
-            <ul>
-              {result.par.map((page, j) => (
-                <li key={j}>
-                  <p>Page {page.page}</p>
-                  <p>Coordinates: {page.l},{page.t} - {page.r},{page.b}</p>
-                </li>
-              ))}
-            </ul>
+        {results.map((work, i) => (
+          <li key={i} style={{ fontSize: '18px' }}>
+            <p>{work.title}</p>
+            <p>{work.authors.map(author => author.name).join(', ')}</p>
           </li>
         ))}
       </ul>
