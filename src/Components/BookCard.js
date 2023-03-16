@@ -38,7 +38,18 @@ const BookReleaseDate = styled.p`
   margin-bottom: 0.5rem;
 `;
 
-const BookCard = ({ book }) => {
+const SaveButton = styled.button`
+  background-color: #fe7f2d;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+`;
+
+const BookCard = ({ book, handleSave }) => {
   const thumbnail = book.volumeInfo.imageLinks?.thumbnail || placeholderImage;
 
   return (
@@ -49,6 +60,7 @@ const BookCard = ({ book }) => {
           <BookTitle>{book.volumeInfo.title}</BookTitle>
           <BookAuthor>{book.volumeInfo.authors.join(', ')}</BookAuthor>
           <BookReleaseDate>{book.volumeInfo.publishedDate}</BookReleaseDate>
+          <SaveButton onClick={() => handleSave(book)}>Save to List</SaveButton>
         </BookInfo>
       </Card>
     </CardContainer>

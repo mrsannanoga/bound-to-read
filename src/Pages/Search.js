@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import BookCard from '../Components/BookCard';
+import React, { useState, useContext } from "react";
+
+
+
+import styled from "styled-components";
+import BookCard from "../Components/BookCard";
+// Import BooksContext
+import BooksContext from "../Components/BooksContext";
 
 
 
@@ -42,18 +47,28 @@ const Results = styled.div`
 
 const Search = () => {
   const [books, setBooks] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Use the BooksContext
+  const { savedBooks, setSavedBooks } = useContext(BooksContext);
+  
+  // Define handleSave
+  const handleSave = (book) => {
+    setSavedBooks([...savedBooks, book]);
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
     const response = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchTerm}&maxResults=20&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
       {
-        method: 'GET',
-      },
+        method: "GET",
+      }
     );
     const data = await response.json();
-    const filteredBooks = data.items.filter((item) => item.volumeInfo.language === 'en');
+    const filteredBooks = data.items.filter(
+      (item) => item.volumeInfo.language === "en"
+    );
     setBooks(filteredBooks);
   };
 
@@ -70,8 +85,14 @@ const Search = () => {
         <SearchButton type="submit">Search</SearchButton>
       </SearchForm>
       <Results>
+<<<<<<< HEAD
       {books.map((book) => (
           <BookCard key={book.id} book={book} />
+=======
+        {books.map((book) => (
+          // Pass the handleSave function as a prop to the BookCard component
+          <BookCard key={book.id} book={book} handleSave={handleSave} />
+>>>>>>> 25b3bb3211e02fbbe817a9da13b8a0d03e1e3e19
         ))}
       </Results>
     </SearchContainer>
