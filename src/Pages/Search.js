@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import BookCard from "../Components/BookCard";
 import BooksContext from "../Components/BooksContext";
-import { useContext } from "react";
+
 import styled from "styled-components";
 
 const SearchContainer = styled.div`
@@ -42,6 +42,8 @@ const SearchButton = styled.button`
   border: none;
   cursor: pointer;
 `;
+
+
 const ClearSearchButton = styled.button`
   background-color: #a83232;
   color: white;
@@ -63,7 +65,7 @@ const ResultsContainer = styled.div`
     `
     > *:not([data-id="${hoveredBookId}"]) {
       filter: blur(3px);
-      
+
     }
   `}
 `;
@@ -72,7 +74,11 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const { setSavedBooks } = useContext(BooksContext);
+  const { savedBooks } = useContext(BooksContext);
   const [hoveredBookId, setHoveredBookId] = useState(null);
+  const isBookInList = (bookId) => {
+    return savedBooks.some((book) => book.id === bookId);
+  };
 
   const fetchData = async () => {
     const response = await fetch(
@@ -138,6 +144,7 @@ const Search = () => {
             book={book}
             handleSave={handleSave}
             setHoveredBookId={setHoveredBookId}
+            isBookInList={isBookInList}
           />
         ))}
       </ResultsContainer>
