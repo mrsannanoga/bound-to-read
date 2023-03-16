@@ -31,18 +31,19 @@ function Research() {
       <input type="text" value={query} onChange={e => setQuery(e.target.value)} />
       <button onClick={handleSearch}>Search</button>
 
-      <ul>
-        {results.map((work, i) => {
-          const cover = covers[i] || {};
-          return (
-            <li key={i} style={{ fontSize: '18px' }}>
-              {cover.url && <img src={cover.url} alt="" style={{ height: '100px' }} />}
-              <p>{work.title}</p>
-              <p>{work.authors.map(author => author.name).join(',')}</p>
-            </li>
-          );
-        })}
-      </ul>
+      <ul style={{ display: 'flex', flexWrap: 'wrap', listStyle: 'none', padding: 0 }}>
+  {results.map((work, i) => {
+    const cover = covers[i] || {};
+    return (
+      <li key={i} style={{ fontSize: '18px', margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        {cover.url && <img src={cover.url} alt="" style={{ height: '100px' }} />}
+        <p style={{ marginTop: '10px', textAlign: 'center' }}>{work.title}</p>
+        <p style={{ marginTop: '5px', textAlign: 'center' }}>{work.authors.map(author => author.name).join(',')}</p>
+      </li>
+    );
+  })}
+</ul>
+
     </div>
   );
 }
