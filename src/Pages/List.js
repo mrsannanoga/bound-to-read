@@ -46,7 +46,7 @@ const List = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <ListContainer>
-        <Title>List of Books</Title>
+        <Title>To be read...</Title>
         <ItemList>
           {savedBooks.map((book, index) => (
             <DraggableListItem

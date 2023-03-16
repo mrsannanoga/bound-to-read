@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import styled from "styled-components";
+import trashIcon from "../assets/img/trash.png";
+
 
 const ListItem = styled.li`
   padding: 10px;
@@ -14,13 +16,14 @@ const ListItem = styled.li`
 `;
 
 const DeleteButton = styled.button`
-  background-color: red;
-  color: white;
+  background-image: url(${trashIcon});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
   border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
   cursor: pointer;
-  font-size: 16px;
 `;
 
 const BookCover = styled.img`
@@ -52,7 +55,7 @@ const DraggableListItem = ({ id, text, index, moveItem, thumbnail, onDelete }) =
       <ListItem ref={ref} isDragging={isDragging}>
         <BookCover src={thumbnail} alt={text} />
         {text}
-        <DeleteButton onClick={() => onDelete(id)}>Delete</DeleteButton>
+        <DeleteButton onClick={() => onDelete(id)}></DeleteButton>
       </ListItem>
     );
   };

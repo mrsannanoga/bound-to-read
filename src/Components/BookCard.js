@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { hoverVariants } from "../Animations";
-import placeholderImage from "../assets/placeholder.webp";
+import placeholderImage from "../assets/img/placeholder.webp";
 
 const CardContainer = styled.div`
   display: flex;
