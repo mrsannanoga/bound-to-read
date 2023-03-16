@@ -1,7 +1,7 @@
 import React from "react";
-import Spinner from "../Components/SpinningWheel/Spinner";
 import { Container } from "react-bootstrap";
 import background from "../assets/img/yellow-background.jpg";
+import Quote from "../Components/RandomQuote/Quote";
 
 const Home = () => {
   return (
@@ -12,7 +12,7 @@ const Home = () => {
         
     }}>
       <h1>Home</h1>
-      <Spinner />
+      <Quote />
     </Container>
   );
 };
