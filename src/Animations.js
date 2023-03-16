@@ -7,7 +7,7 @@ export const hoverVariants = {
       scale: 1,
     },
     hover: {
-      scale: 2,
+      scale: 1.75,
       zIndex: 1,
     },
   };
