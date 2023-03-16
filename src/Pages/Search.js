@@ -60,7 +60,6 @@ const ResultsContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   margin-top: 4rem;
-
   ${({ hoveredBookId }) =>
     hoveredBookId &&
     `
