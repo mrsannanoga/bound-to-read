@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 const Footer = styled.div`
 
-background-color: #FE7F2D
+background-color: rgb(2, 2, 72)
 `
 const Container = styled.div`
-padding: 1rem;
+padding: 2rem;
 font-size: 2rem;
 display: flex;
 justify-content: space-around;

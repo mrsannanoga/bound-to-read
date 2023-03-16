@@ -1,14 +1,20 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import Quote from "../Components/RandomQuote/Quote"
+import background from "../assets/img/yellow-background.jpg";
 
 const Home = () => {
   return (
-  
-    <Quote />
-  
-  
-  )
+    <Container style={{ 
+        backgroundImage: `url(${background})`, 
+        backgroundSize: "cover", 
+        backgroundPosition: "top center",
+        
+    }}>
+      <h1>Home</h1>
+      <Spinner />
+    </Container>
+  );
 };
 
 export default Home;
+

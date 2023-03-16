@@ -8,7 +8,7 @@ const Navbar = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #FE7F2D;
+  background-color: rgb(2, 2, 72);
 `;
 
 const Logo = styled.div`
@@ -42,6 +42,7 @@ const Nav = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/search">Search</NavLink>
         <NavLink to="/list">My List</NavLink>
+        <NavLink to="/research">Find by Subject</NavLink>
       </NavLinks>
     </Navbar>
   );

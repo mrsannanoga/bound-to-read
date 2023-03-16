@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
+=======
+    "@iconify/icons-bi": "^1.2.15",
+>>>>>>> 03f3be8fc4dc7c02c74dbe2964258cd384ac9dfc
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -13,8 +17,14 @@
     "framer-motion": "^10.3.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
+<<<<<<< HEAD
+=======
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+>>>>>>> 03f3be8fc4dc7c02c74dbe2964258cd384ac9dfc
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.5",
+    "react-icons": "^4.8.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.9",

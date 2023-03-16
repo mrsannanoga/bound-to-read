@@ -1,77 +1,153 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import BookCard from '../Components/BookCard';
+import React, { useState, useEffect, useContext } from "react";
+import BookCard from "../Components/BookCard";
+import BooksContext from "../Components/BooksContext";
+
+import styled from "styled-components";
 
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem;
+  margin-top: 2rem;
 `;
-
-const SearchForm = styled.form`
+const InputGroup = styled.div`
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: nowrap;
 `;
 
 const SearchInput = styled.input`
-  font-size: 1rem;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`;
-
-const SearchButton = styled.button`
-  font-size: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 2rem;
+  margin-right: 1rem;
 `;
-
-const Results = styled.div`
+const ButtonsContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
 `;
 
-const Search = () => {
-  const [books, setBooks] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+const SearchButton = styled.button`
+  background-color: #fe7f2d;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+`;
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchTerm}&maxResults=20&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
-      {
-        method: 'GET',
-      },
-    );
-    const data = await response.json();
-    const filteredBooks = data.items.filter((item) => item.volumeInfo.language === 'en');
-    setBooks(filteredBooks);
+
+const ClearSearchButton = styled.button`
+  background-color: #a83232;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+`;
+
+const ResultsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 4rem;
+  ${({ hoveredBookId }) =>
+    hoveredBookId &&
+    `
+    > *:not([data-id="${hoveredBookId}"]) {
+      filter: blur(3px);
+
+    }
+  `}
+`;
+
+const Search = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const { setSavedBooks } = useContext(BooksContext);
+  const { savedBooks } = useContext(BooksContext);
+  const [hoveredBookId, setHoveredBookId] = useState(null);
+  const isBookInList = (bookId) => {
+    return savedBooks.some((book) => book.id === bookId);
   };
+
+  const fetchData = async () => {
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=20&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
+      {
+        method: "GET",
+      }
+    );
+    if (response.ok) {
+      const data = await response.json();
+      setSearchResults(data.items);
+      // Save search results to local storage
+      localStorage.setItem("searchResults", JSON.stringify(data.items));
+    } else {
+      console.error("Failed to fetch data");
+    }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetchData();
+  };
+
+  const handleSave = (book) => {
+    setSavedBooks((prevBooks) => [...prevBooks, book]);
+  };
+
+  // Clear search results function
+  const clearSearchResults = () => {
+    setSearchResults([]);
+    localStorage.removeItem("searchResults");
+  };
+
+  useEffect(() => {
+    // Check if there are search results in local storage
+    const storedResults = localStorage.getItem("searchResults");
+    if (storedResults) {
+      setSearchResults(JSON.parse(storedResults));
+    }
+  }, []);
 
   return (
     <SearchContainer>
-      <h1>Search</h1>
-      <SearchForm onSubmit={handleSearch}>
-        <SearchInput
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Author name"
-        />
-        <SearchButton type="submit">Search</SearchButton>
-      </SearchForm>
-      <Results>
-        {books.map((book) => (
-          <BookCard key={book.id} book={book} />
+      <form onSubmit={handleSearch}>
+        <InputGroup>
+          <SearchInput
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <ButtonsContainer>
+            <SearchButton type="submit">Search</SearchButton>
+            <ClearSearchButton onClick={clearSearchResults}>
+              Clear
+            </ClearSearchButton>
+          </ButtonsContainer>
+        </InputGroup>
+      </form>
+      <ResultsContainer hoveredBookId={hoveredBookId}>
+        {searchResults.map((book) => (
+          <BookCard
+            key={book.id}
+            book={book}
+            handleSave={handleSave}
+            setHoveredBookId={setHoveredBookId}
+            isBookInList={isBookInList}
+          />
         ))}
-      </Results>
+      </ResultsContainer>
     </SearchContainer>
   );
 };
