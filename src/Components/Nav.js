@@ -42,7 +42,7 @@ const Nav = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/search">Search</NavLink>
         <NavLink to="/list">My List</NavLink>
-        <NavLink to="/research">Find Quote</NavLink>
+        <NavLink to="/research">Find by Subject</NavLink>
       </NavLinks>
     </Navbar>
   );
