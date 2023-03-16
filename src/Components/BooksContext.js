@@ -11,12 +11,21 @@
  */
 
 
-import { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const BooksContext = createContext();
 
 export const BooksProvider = ({ children }) => {
-  const [savedBooks, setSavedBooks] = useState([]);
+  // Retrieve saved books from localStorage or initialize an empty array
+  const [savedBooks, setSavedBooks] = useState(() => {
+    const storedBooks = localStorage.getItem("savedBooks");
+    return storedBooks ? JSON.parse(storedBooks) : [];
+  });
+
+  // Save the savedBooks to localStorage when the list is updated
+  useEffect(() => {
+    localStorage.setItem("savedBooks", JSON.stringify(savedBooks));
+  }, [savedBooks]);
 
   return (
     <BooksContext.Provider value={{ savedBooks, setSavedBooks }}>
