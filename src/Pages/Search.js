@@ -65,7 +65,6 @@ const ResultsContainer = styled.div`
     `
     > *:not([data-id="${hoveredBookId}"]) {
       filter: blur(3px);
-
     }
   `}
 `;

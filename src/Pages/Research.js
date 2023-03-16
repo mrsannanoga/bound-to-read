@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import BookSearchCard from '../Components/BookSearchCard';
 
 function Research() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [covers, setCovers] = useState([]);
+  const [savedBooks, setSavedBooks] = useState([]);
+
+  // Load search results from localStorage on mount
+  useEffect(() => {
+    const storedResults = JSON.parse(localStorage.getItem('searchResults')) || [];
+    setResults(storedResults);
+  }, []);
+
+  // Save search results to localStorage whenever the results state changes
+  useEffect(() => {
+    localStorage.setItem('searchResults', JSON.stringify(results));
+  }, [results]);
 
   const handleSearch = async () => {
     const url = `https://openlibrary.org/subjects/${encodeURIComponent(query)}.json?details=true`;
@@ -26,27 +39,70 @@ function Research() {
     setCovers(coverUrlsWithBlobs);
   };
 
+  const isBookInList = (bookId) => {
+    return savedBooks.some(book => book.key === bookId);
+  }
+
+  const handleSaveBook = (book) => {
+    setSavedBooks([...savedBooks, book]);
+  }
+
+  useEffect(() => {
+    // Load saved books from localStorage on mount
+    const savedBooksFromStorage = JSON.parse(localStorage.getItem('savedBooks')) || [];
+    setSavedBooks(savedBooksFromStorage);
+  }, []);
+
+  useEffect(() => {
+    // Save saved books to localStorage whenever the savedBooks state changes
+    localStorage.setItem('savedBooks', JSON.stringify(savedBooks));
+  }, [savedBooks]);
+
+  const handleClearResults = () => {
+    setResults([]);
+    setCovers([]);
+    localStorage.removeItem('searchResults');
+  }
+
   return (
     <div>
       <input type="text" value={query} onChange={e => setQuery(e.target.value)} />
       <button onClick={handleSearch}>Search</button>
+      <button onClick={handleClearResults}>Clear Results</button>
 
-      <ul style={{ display: 'flex', flexWrap: 'wrap', listStyle: 'none', padding: 0 }}>
-  {results.map((work, i) => {
-    const cover = covers[i] || {};
-    return (
-      <li key={i} style={{ fontSize: '18px', margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        {cover.url && <img src={cover.url} alt="" style={{ height: '100px' }} />}
-        <p style={{ marginTop: '10px', textAlign: 'center' }}>{work.title}</p>
-        <p style={{ marginTop: '5px', textAlign: 'center' }}>{work.authors.map(author => author.name).join(',')}</p>
-      </li>
-    );
-  })}
+      {results.length > 0 &&
+        <ul style={{ display: 'flex', flexWrap: 'wrap', listStyle: 'none', padding: 0 }}>
+          {results.map((work, i) => {
+            const cover = covers[i] || {};
+            return (
+              <li key={i} style={{ fontSize: '18px', margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {cover.url && <img src={cover.url} alt="" style={{ height: '100px' }} />}
+                <BookSearchCard
+                  book={work}
+                  handleSaveBook={handleSaveBook}
+isBookInList={isBookInList}
+/>
+</li>
+)
+})}
 </ul>
-
+}
+{savedBooks.length > 0 &&
+    <div>
+      <h2>Saved Books:</h2>
+      <ul>
+        {savedBooks.map((book, i) => (
+          <li key={i}>
+            {book.title} by {book.author_name}
+          </li>
+        ))}
+      </ul>
     </div>
-  );
+  }
+</div>
+);
 }
 
 export default Research;
+
 
