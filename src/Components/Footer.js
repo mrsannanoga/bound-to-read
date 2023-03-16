@@ -8,7 +8,7 @@ const Footer = styled.div`
 background-color: rgb(2, 2, 72)
 `
 const Container = styled.div`
-padding: 1rem;
+padding: 2rem;
 font-size: 2rem;
 display: flex;
 justify-content: space-around;

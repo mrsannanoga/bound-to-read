@@ -85,14 +85,9 @@ const Search = () => {
         <SearchButton type="submit">Search</SearchButton>
       </SearchForm>
       <Results>
-<<<<<<< HEAD
-      {books.map((book) => (
-          <BookCard key={book.id} book={book} />
-=======
         {books.map((book) => (
           // Pass the handleSave function as a prop to the BookCard component
           <BookCard key={book.id} book={book} handleSave={handleSave} />
->>>>>>> 25b3bb3211e02fbbe817a9da13b8a0d03e1e3e19
         ))}
       </Results>
     </SearchContainer>
@@ -100,4 +95,3 @@ const Search = () => {
 };
 
 export default Search;
-
