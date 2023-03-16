@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import React, { useState, useContext } from "react";
-import styled from "styled-components";
-=======
 import React, { useState, useEffect } from "react";
->>>>>>> fe33beb61cd9f5bb789a98eff66d73538cc11ec8
 import BookCard from "../Components/BookCard";
 import BooksContext from "../Components/BooksContext";
 import { useContext } from "react";
@@ -63,7 +58,6 @@ const ResultsContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   margin-top: 4rem;
-
   ${({ hoveredBookId }) =>
     hoveredBookId &&
     `
@@ -122,22 +116,6 @@ const Search = () => {
 
   return (
     <SearchContainer>
-<<<<<<< HEAD
-      <h1>Search</h1>
-      <SearchForm onSubmit={handleSearch}>
-        <SearchInput
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Author name"
-        />
-        <SearchButton type="submit">Search</SearchButton>
-      </SearchForm>
-      <Results>
-        {books.map((book) => (
-          // Pass the handleSave function as a prop to the BookCard component
-          <BookCard key={book.id} book={book} handleSave={handleSave} />
-=======
       <form onSubmit={handleSearch}>
         <InputGroup>
           <SearchInput
@@ -161,15 +139,10 @@ const Search = () => {
             handleSave={handleSave}
             setHoveredBookId={setHoveredBookId}
           />
->>>>>>> fe33beb61cd9f5bb789a98eff66d73538cc11ec8
         ))}
       </ResultsContainer>
     </SearchContainer>
   );
 };
 
-<<<<<<< HEAD
 export default Search;
-=======
-export default Search;
->>>>>>> fe33beb61cd9f5bb789a98eff66d73538cc11ec8
