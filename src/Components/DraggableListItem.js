@@ -81,7 +81,9 @@ const DraggableListItem = ({
       <BookCover src={thumbnail} alt={text} />
       {text}
       <IconContainer>
-        <BuyButton href={buyLink} target="_blank" rel="noopener noreferrer" />
+        {buyLink ? (
+          <BuyButton href={buyLink} target="_blank" rel="noopener noreferrer" />
+        ) : null}
 
         <DeleteButton onClick={() => onDelete(id)}></DeleteButton>
       </IconContainer>

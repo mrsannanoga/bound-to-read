@@ -46,24 +46,24 @@ const BookDetails = styled.div`
 `;
 
 const SaveButton = styled.button`
-  background-color: #fe7f2d;
+  background-color: ${(props) => (props.saved ? "green" : "blue")};
   color: white;
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
   border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
   cursor: pointer;
-  margin-top: 2rem;
+  font-size: 16px;
+  margin-left: 10px;
 `;
 
-const BookCard = ({ book, handleSave, setHoveredBookId  }) => {
+const BookCard = ({ book, handleSave, setHoveredBookId, isBookInList }) => {
   const thumbnail = book.volumeInfo.imageLinks?.thumbnail || placeholderImage;
   const authors = book.volumeInfo.authors || [];
   return (
     <CardContainer
-    data-id={book.id}
-    onMouseEnter={() => setHoveredBookId(book.id)}
-    onMouseLeave={() => setHoveredBookId(null)}
+      data-id={book.id}
+      onMouseEnter={() => setHoveredBookId(book.id)}
+      onMouseLeave={() => setHoveredBookId(null)}
     >
       <Card whileHover="hover" variants={hoverVariants} initial="initial">
         <BookCover src={thumbnail} alt={book.volumeInfo.title} />
@@ -72,7 +72,13 @@ const BookCard = ({ book, handleSave, setHoveredBookId  }) => {
           <BookDetails>
             <BookAuthor>{authors.join(", ")}</BookAuthor>
           </BookDetails>
-          <SaveButton onClick={() => handleSave(book)}>Save to List</SaveButton>
+          <SaveButton
+            onClick={() => handleSave(book)}
+            disabled={isBookInList(book.id)}
+            saved={isBookInList(book.id)}
+          >
+            Save to list
+          </SaveButton>
         </BookInfo>
       </Card>
     </CardContainer>
