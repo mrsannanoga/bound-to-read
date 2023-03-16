@@ -1,13 +1,12 @@
 import React from "react";
-import Spinner from "../Components/SpinningWheel/Spinner";
 import { Container } from "react-bootstrap";
+import Quote from "../Components/RandomQuote/Quote"
 
 const Home = () => {
   return (
-  <Container>
-    <h1>Home</h1>
-  <Spinner/>
-  </Container>
+  
+    <Quote />
+  
   
   )
 };
