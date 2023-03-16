@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Nav from './Components/Nav';
 import Home from './Pages/Home';
+import Research from './Pages/Research';
 import Search from './Pages/Search';
 import List from './Pages/List';
 import Footer from './Components/Footer';
@@ -34,6 +35,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/search" element={<Search />} />
               <Route path="/list" element={<List />} />
+              <Route path="/research" element={<Research />} />
+              
             </Routes>
           </Content>
           <Footer />
