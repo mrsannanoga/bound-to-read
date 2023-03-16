@@ -14,7 +14,8 @@ const SearchContainer = styled.div`
 const InputGroup = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  width: 100%;
   flex-wrap: nowrap;
 `;
 
@@ -29,8 +30,8 @@ const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
-
 
 const SearchButton = styled.button`
   background-color: #fe7f2d;
@@ -49,9 +50,7 @@ const ClearSearchButton = styled.button`
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  
 `;
-
 
 const ResultsContainer = styled.div`
   display: flex;
@@ -59,11 +58,21 @@ const ResultsContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   margin-top: 4rem;
+
+  ${({ hoveredBookId }) =>
+    hoveredBookId &&
+    `
+    > *:not([data-id="${hoveredBookId}"]) {
+      filter: blur(3px);
+    }
+  `}
 `;
+
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const { setSavedBooks } = useContext(BooksContext);
+  const [hoveredBookId, setHoveredBookId] = useState(null);
 
   const fetchData = async () => {
     const response = await fetch(
@@ -116,13 +125,20 @@ const Search = () => {
           />
           <ButtonsContainer>
             <SearchButton type="submit">Search</SearchButton>
-            <ClearSearchButton onClick={clearSearchResults}>Clear</ClearSearchButton>
+            <ClearSearchButton onClick={clearSearchResults}>
+              Clear
+            </ClearSearchButton>
           </ButtonsContainer>
         </InputGroup>
       </form>
-      <ResultsContainer>
+      <ResultsContainer hoveredBookId={hoveredBookId}>
         {searchResults.map((book) => (
-          <BookCard key={book.id} book={book} handleSave={handleSave} />
+          <BookCard
+            key={book.id}
+            book={book}
+            handleSave={handleSave}
+            setHoveredBookId={setHoveredBookId}
+          />
         ))}
       </ResultsContainer>
     </SearchContainer>
@@ -130,4 +146,3 @@ const Search = () => {
 };
 
 export default Search;
-

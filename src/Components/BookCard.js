@@ -41,11 +41,9 @@ const BookInfo = styled.div`
 
 const BookDetails = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 `;
-
-
 
 const SaveButton = styled.button`
   background-color: #fe7f2d;
@@ -58,11 +56,15 @@ const SaveButton = styled.button`
   margin-top: 2rem;
 `;
 
-const BookCard = ({ book, handleSave }) => {
+const BookCard = ({ book, handleSave, setHoveredBookId  }) => {
   const thumbnail = book.volumeInfo.imageLinks?.thumbnail || placeholderImage;
   const authors = book.volumeInfo.authors || [];
   return (
-    <CardContainer>
+    <CardContainer
+    data-id={book.id}
+    onMouseEnter={() => setHoveredBookId(book.id)}
+    onMouseLeave={() => setHoveredBookId(null)}
+    >
       <Card whileHover="hover" variants={hoverVariants} initial="initial">
         <BookCover src={thumbnail} alt={book.volumeInfo.title} />
         <BookInfo>
