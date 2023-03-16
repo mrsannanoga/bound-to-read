@@ -1,20 +1,22 @@
-import React from 'react';
-import styled from 'styled-components';
-import placeholderImage from '../assets/placeholder.webp';
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { hoverVariants } from "../Animations";
+import placeholderImage from "../assets/placeholder.webp";
 
 const CardContainer = styled.div`
   display: flex;
   margin: 1rem;
 `;
 
-const Card = styled.div`
+const Card = styled(motion.div)`
   display: flex;
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  &:hover {
+  /* &:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  }
+  } */
 `;
 
 const BookCover = styled.img`
@@ -54,11 +56,11 @@ const BookCard = ({ book, handleSave }) => {
 
   return (
     <CardContainer>
-      <Card>
+      <Card whileHover="hover" variants={hoverVariants} initial="initial">
         <BookCover src={thumbnail} alt={book.volumeInfo.title} />
         <BookInfo>
           <BookTitle>{book.volumeInfo.title}</BookTitle>
-          <BookAuthor>{book.volumeInfo.authors.join(', ')}</BookAuthor>
+          <BookAuthor>{book.volumeInfo.authors.join(", ")}</BookAuthor>
           <BookReleaseDate>{book.volumeInfo.publishedDate}</BookReleaseDate>
           <SaveButton onClick={() => handleSave(book)}>Save to List</SaveButton>
         </BookInfo>
