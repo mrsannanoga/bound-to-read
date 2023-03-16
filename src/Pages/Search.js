@@ -1,7 +1,4 @@
 import React, { useState, useContext } from "react";
-
-
-
 import styled from "styled-components";
 import BookCard from "../Components/BookCard";
 // Import BooksContext
