@@ -61,7 +61,7 @@ const Search = () => {
   const handleSearch = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchTerm}&maxResults=20&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
+      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchTerm}+intitle:${searchTerm}&maxResults=20&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
       {
         method: "GET",
       }
