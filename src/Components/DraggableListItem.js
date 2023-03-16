@@ -15,28 +15,33 @@ const ListItem = styled.li`
   background-color: ${(props) => (props.isDragging ? "#ccc" : "white")};
 `;
 
+const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const DeleteButton = styled.button`
   background-image: url(${trashIcon});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   border: none;
   cursor: pointer;
 `;
 
 const BuyButton = styled.a`
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
   background-image: url(${shopIcon});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
 `;
-
 
 const BookCover = styled.img`
   height: 60px;
@@ -75,9 +80,11 @@ const DraggableListItem = ({
     <ListItem ref={ref} isDragging={isDragging}>
       <BookCover src={thumbnail} alt={text} />
       {text}
-      <BuyButton href={buyLink} target="_blank" rel="noopener noreferrer" />
+      <IconContainer>
+        <BuyButton href={buyLink} target="_blank" rel="noopener noreferrer" />
 
-      <DeleteButton onClick={() => onDelete(id)}></DeleteButton>
+        <DeleteButton onClick={() => onDelete(id)}></DeleteButton>
+      </IconContainer>
     </ListItem>
   );
 };

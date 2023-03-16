@@ -20,9 +20,9 @@ const Title = styled.h1`
 
 const ItemList = styled.ul`
   list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 500px;
+  margin-bottom: 30px;
+  width: 30%;
+  
 
   border-radius: 8px;
 `;
