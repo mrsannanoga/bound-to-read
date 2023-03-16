@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import BookCard from '../Components/BookCard';
-
-
+import React, { useState } from "react";
+import styled from "styled-components";
+import BookCard from "../Components/BookCard";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -40,20 +38,33 @@ const Results = styled.div`
   justify-content: center;
 `;
 
+
+
+
+
 const Search = () => {
   const [books, setBooks] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Define list state
+  const [list, setList] = useState([]);
+
+  const handleSave = (book) => {
+    setList([...list, book]);
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
     const response = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchTerm}&maxResults=20&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
       {
-        method: 'GET',
-      },
+        method: "GET",
+      }
     );
     const data = await response.json();
-    const filteredBooks = data.items.filter((item) => item.volumeInfo.language === 'en');
+    const filteredBooks = data.items.filter(
+      (item) => item.volumeInfo.language === "en"
+    );
     setBooks(filteredBooks);
   };
 
@@ -71,7 +82,8 @@ const Search = () => {
       </SearchForm>
       <Results>
         {books.map((book) => (
-          <BookCard key={book.id} book={book} />
+          // Pass the handleSave function as a prop to the BookCard component
+          <BookCard key={book.id} book={book} handleSave={handleSave} />
         ))}
       </Results>
     </SearchContainer>
