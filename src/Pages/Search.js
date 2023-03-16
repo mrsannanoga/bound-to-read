@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
+
+
 import styled from "styled-components";
 import BookCard from "../Components/BookCard";
+// Import BooksContext
+import BooksContext from "../Components/BooksContext";
+
+
 
 const SearchContainer = styled.div`
   display: flex;
@@ -38,19 +45,16 @@ const Results = styled.div`
   justify-content: center;
 `;
 
-
-
-
-
 const Search = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Define list state
-  const [list, setList] = useState([]);
-
+  // Use the BooksContext
+  const { savedBooks, setSavedBooks } = useContext(BooksContext);
+  
+  // Define handleSave
   const handleSave = (book) => {
-    setList([...list, book]);
+    setSavedBooks([...savedBooks, book]);
   };
 
   const handleSearch = async (e) => {

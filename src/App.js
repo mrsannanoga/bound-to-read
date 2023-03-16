@@ -9,31 +9,41 @@ import List from './Pages/List';
 import Footer from './Components/Footer';
 import GlobalStyle from './Components/GlobalStyle';
 
+// Import the BooksProvider
+import { BooksProvider } from './Components/BooksContext';
+
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 `;
 
+const Content = styled.div`
+  flex-grow: 1;
+`;
+
 function App() {
   return (
     <AppContainer>
       <Router>
-        <GlobalStyle />
-        <Nav />
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/list" element={<List />} />
-          </Routes>
-        </div>
-        <Footer />
+        <BooksProvider>
+          <GlobalStyle />
+          <Nav />
+          <Content>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/list" element={<List />} />
+            </Routes>
+          </Content>
+          <Footer />
+        </BooksProvider>
       </Router>
     </AppContainer>
   );
 }
 
 export default App;
+
 
 

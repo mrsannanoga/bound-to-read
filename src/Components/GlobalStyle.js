@@ -14,9 +14,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 3rem;
     }
 
-    .content {
-        flex-grow: 1;
-    }
+    
     `;
 
 // Export the GlobalStyle component
