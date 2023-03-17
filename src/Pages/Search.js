@@ -3,11 +3,7 @@ import BookCard from "../Components/BookCard";
 import BooksContext from "../Components/BooksContext";
 import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
-
-
 import styled from "styled-components";
-
-
 
 
 const SearchContainer = styled.div`
