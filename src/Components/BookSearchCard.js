@@ -1,32 +1,93 @@
-import React from 'react';
+import React from "react";
+import styled from "styled-components";
+import { motion } from "framer-motion";
+import { hoverVariants } from "../Animations";
+import placeholderImage from "../assets/img/placeholder.webp";
 
-function BookCard({ book, handleSave, setHoveredBookId, isBookInList }) {
-const thumbnail = book?.imageLinks?.thumbnail;
-const title = book?.title;
-const authors = book?.authors?.map(author => author.name).join(', ');
+const CardContainer = styled.div`
+  display: flex;
+  margin: 1rem;
+  height: 100%;
+`;
 
-// Add a unique id property to the book object if it doesn't already exist
-if (!book.id) {
-book.id = Date.now(); // Assign a timestamp as the id
-}
+const Card = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  height: 350px;
+`;
 
-// Check if the book object has an id property before using it
-const bookId = book.id ? book.id : null;
+const BookCover = styled.img`
+  width: auto;
+  height: 200px;
+  object-fit: cover;
+`;
 
-return (
-<div style={{ marginTop: '10px' }}>
-<button onClick={() => handleSave(book)}>Save</button>
-<div
-onMouseEnter={() => setHoveredBookId(bookId)}
-onMouseLeave={() => setHoveredBookId(null)}
->
-{thumbnail && <img src={thumbnail} alt={title} />}
-<p style={{ fontWeight: 'bold' }}>{title}</p>
-<p style={{ fontStyle: 'italic' }}>{authors}</p>
-{isBookInList(bookId) && <p style={{ color: 'green' }}>Already saved</p>}
-</div>
-</div>
-);
-}
+const BookTitle = styled.h3`
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+`;
+
+const BookAuthor = styled.p`
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+`;
+
+const BookInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+`;
+
+const BookDetails = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const SaveButton = styled.button`
+  background-color: ${(props) => (props.saved ? "green" : "blue")};
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+`;
+
+const BookCard = ({ book, handleSave, setHoveredBookId, isBookInList }) => {
+  const { title, authors, imageLinks } = book.volumeInfo;
+  const authorNames = authors?.map((author) => author.name).join(", ");
+  const thumbnail = imageLinks?.thumbnail || placeholderImage;
+
+  return (
+    <CardContainer>
+      <Card
+        whileHover="hover"
+        variants={hoverVariants}
+        onMouseEnter={() => setHoveredBookId(book.id)}
+        onMouseLeave={() => setHoveredBookId(null)}
+      >
+        <BookCover src={thumbnail} alt={title} />
+        <BookInfo>
+          <BookTitle>{title}</BookTitle>
+          <BookAuthor>Author: {authorNames}</BookAuthor>
+        </BookInfo>
+        <BookDetails>
+          <SaveButton
+            onClick={() => handleSave(book)}
+            saved={isBookInList(book.id)}
+          >
+            {isBookInList(book.id) ? "Saved" : "Save"}
+          </SaveButton>
+        </BookDetails>
+      </Card>
+    </CardContainer>
+  );
+};
 
 export default BookCard;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import BookCard from "../Components/BookCard";
+import BookSearchCard from "../Components/BookSearchCard";
 
 // Import the necessary components
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
@@ -84,7 +84,7 @@ const Research = () => {
                 },
               };
               return (
-                <BookCard
+                <BookSearchCard
                   key={book.id}
                   book={book}
                   handleSave={handleSave}
