@@ -28,18 +28,19 @@ function App() {
     <AppContainer>
       <Router>
         <BooksProvider>
-          <GlobalStyle />
-          <Nav />
-          <Content>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/list" element={<List />} />
-              <Route path="/research" element={<Research />} />
-              
-            </Routes>
-          </Content>
-          <Footer />
+          <>
+            <GlobalStyle />
+            <Nav />
+            <Content>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/list" element={<List />} />
+                <Route path="/research" element={<Research />} />
+              </Routes>
+            </Content>
+            <Footer />
+          </>
         </BooksProvider>
       </Router>
     </AppContainer>

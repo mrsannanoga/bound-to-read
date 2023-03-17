@@ -1,5 +1,7 @@
 // import the createGlobalStyle function from styled-components
 import { createGlobalStyle } from "styled-components";
+import bgImage from "../assets/img/yellow-background.jpg";
+
 
 // This is a global style component that will be used to style the entire app
 const GlobalStyle = createGlobalStyle`
@@ -14,7 +16,15 @@ const GlobalStyle = createGlobalStyle`
         font-size: 3rem;
     }
 
-    
+    body {
+    background-image: url(${bgImage});
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+  }
     `;
 
 // Export the GlobalStyle component

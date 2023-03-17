@@ -4,6 +4,8 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import DraggableListItem from "../Components/DraggableListItem";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { pageAnimations } from "../Animations";
 
 const ListContainer = styled.div`
   display: flex;
@@ -44,7 +46,8 @@ const List = () => {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
+    <motion.div exit='exit' variants={pageAnimations} initial="hidden"animate="show" >
+       <DndProvider backend={HTML5Backend}>
       <ListContainer>
         <Title>To be read...</Title>
         <ItemList>
@@ -63,6 +66,8 @@ const List = () => {
         </ItemList>
       </ListContainer>
     </DndProvider>
+    </motion.div>
+   
   );
 };
 

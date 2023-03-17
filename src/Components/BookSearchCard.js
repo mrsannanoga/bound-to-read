@@ -7,7 +7,7 @@ import placeholderImage from "../assets/img/placeholder.webp";
 const CardContainer = styled.div`
   display: flex;
   margin: 1rem;
-  height:100%;
+  height: 100%;
 `;
 
 const Card = styled(motion.div)`
@@ -18,11 +18,13 @@ const Card = styled(motion.div)`
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   height: 350px;
 `;
+
 const BookCover = styled.img`
   width: auto;
   height: 200px;
   object-fit: cover;
 `;
+
 const BookTitle = styled.h3`
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
@@ -58,29 +60,31 @@ const SaveButton = styled.button`
 `;
 
 const BookCard = ({ book, handleSave, setHoveredBookId, isBookInList }) => {
-  const thumbnail = book.volumeInfo.imageLinks?.thumbnail || placeholderImage;
-  const authors = book.volumeInfo.authors || [];
+  const { title, authors, imageLinks } = book.volumeInfo;
+  const authorNames = authors?.map((author) => author.name).join(", ");
+  const thumbnail = imageLinks?.thumbnail || placeholderImage;
+
   return (
-    <CardContainer
-      data-id={book.id}
-      onMouseEnter={() => setHoveredBookId(book.id)}
-      onMouseLeave={() => setHoveredBookId(null)}
-    >
-      <Card whileHover="hover" variants={hoverVariants} initial="initial">
-        <BookCover src={thumbnail} alt={book.volumeInfo.title} />
+    <CardContainer>
+      <Card
+        whileHover="hover"
+        variants={hoverVariants}
+        onMouseEnter={() => setHoveredBookId(book.id)}
+        onMouseLeave={() => setHoveredBookId(null)}
+      >
+        <BookCover src={thumbnail} alt={title} />
         <BookInfo>
-          <BookTitle>{book.volumeInfo.title}</BookTitle>
-          <BookDetails>
-            <BookAuthor>{authors.join(", ")}</BookAuthor>
-          </BookDetails>
+          <BookTitle>{title}</BookTitle>
+          <BookAuthor>Author: {authorNames}</BookAuthor>
+        </BookInfo>
+        <BookDetails>
           <SaveButton
             onClick={() => handleSave(book)}
-            disabled={isBookInList(book.id)}
             saved={isBookInList(book.id)}
           >
-            Save to list
+            {isBookInList(book.id) ? "Saved" : "Save"}
           </SaveButton>
-        </BookInfo>
+        </BookDetails>
       </Card>
     </CardContainer>
   );
