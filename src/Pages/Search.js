@@ -42,7 +42,7 @@ const ButtonsContainer = styled.div`
 `;
 
 const SearchButton = styled.button`
-  background-color: #fe7f2d;
+  background-color: #020248;
   color: white;
   font-size: 2rem;
   padding: 0.5rem 1rem;
@@ -53,7 +53,7 @@ const SearchButton = styled.button`
 
 
 const ClearSearchButton = styled.button`
-  background-color: #a83232;
+  background-color: #f98203;
   color: white;
   font-size: 2rem;
   padding: 0.5rem 1rem;

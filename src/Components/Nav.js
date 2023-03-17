@@ -8,7 +8,7 @@ const Navbar = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: rgb(2, 2, 72);
+  background-color: #020248
 `;
 
 const Logo = styled.div`
