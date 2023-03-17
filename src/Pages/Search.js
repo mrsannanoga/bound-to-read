@@ -4,14 +4,20 @@ import BooksContext from "../Components/BooksContext";
 import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
 
+
 import styled from "styled-components";
+
+
+
 
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
-  margin-top: 2rem;
+  
+  height: 100%;
+  
 `;
 const InputGroup = styled.div`
   display: flex;
@@ -123,7 +129,8 @@ const Search = () => {
   }, []);
 
   return (
-    <motion.div exit='exit' variants={pageAnimations} initial="hidden"animate="show" >
+    
+      <motion.div exit='exit' variants={pageAnimations} initial="hidden"animate="show" >
       <SearchContainer>
       <form onSubmit={handleSearch}>
         <InputGroup>
@@ -153,6 +160,8 @@ const Search = () => {
       </ResultsContainer>
     </SearchContainer>
     </motion.div>
+    
+    
     
   );
 };
