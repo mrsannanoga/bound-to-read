@@ -12,6 +12,7 @@ const ListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  
 `;
 
 const Title = styled.h1`
@@ -61,6 +62,7 @@ const List = () => {
               thumbnail={book.volumeInfo.imageLinks.thumbnail}
               onDelete={handleDelete}
               buyLink={book.saleInfo && book.saleInfo.buyLink}
+              book={book} 
             />
           ))}
         </ItemList>

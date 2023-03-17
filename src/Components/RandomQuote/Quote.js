@@ -1,7 +1,9 @@
 //inspired by 
 import React, { useEffect, useState } from "react";
+import { ImQuotesLeft } from "@react-icons/all-files/im/ImQuotesLeft";
+import { ImQuotesRight } from "@react-icons/all-files/im/ImQuotesRight";
+
 import axios from "axios";
-// import { motion } from "framer-motion";
 import "./Quote.css";
 
 const Quote = () => {
@@ -33,16 +35,17 @@ const Quote = () => {
 
   return (
     <div className="container">
-      <div className="title">
-        <h5>Quote Of The Day</h5>
-      </div>
+
       <div className="mainContent">
+        <div className="title">
+          <h5>Quote Of The Day</h5>
+        </div>
         <div className="textArea">
           <span className="quote">
-                    {quote}
+            <i><ImQuotesLeft /></i> {quote} <i><ImQuotesRight /></i>
           </span>
         </div>
-        <div className="author">{author}</div>
+        <div className="author">-{author}</div>
         <div className="buttonArea">
           <div className="btn">
             <button onClick={quoteAPI} className="getQuotebtn">Get a Quote</button>
