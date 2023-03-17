@@ -1,16 +1,37 @@
 import React, { useState } from 'react';
-import BookSearchCard from '../Components/BookSearchCard';
+import styled from "styled-components";
+import BookCard from "../Components/BookCard";
 
-function Research() {
+// Import the necessary components
+import { InputGroup, FormControl, Button } from 'react-bootstrap';
+
+// Define the placeholder image
+const placeholderImage = 'https://via.placeholder.com/150';
+
+const ResultsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 4rem;
+  ${({ hoveredBookId }) =>
+    hoveredBookId &&
+    `> *:not([data-id="${hoveredBookId}"]) {
+      filter: blur(3px);
+    }`
+  };
+`;
+
+const Research = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [covers, setCovers] = useState([]);
+  const [hoveredBookId, setHoveredBookId] = useState(null);
 
   const handleSearch = async () => {
     const url = `https://openlibrary.org/subjects/${encodeURIComponent(query)}.json?details=true`;
     const response = await fetch(url);
     const data = await response.json();
-
     // Extract the array of works from the response
     const works = data.works || [];
     setResults(works);
@@ -19,42 +40,64 @@ function Research() {
     const coverIds = works
       .map(work => work.cover_id)
       .filter(id => id !== undefined);
-    const coverUrl = 'https://covers.openlibrary.org/b/id/';
-    const coverUrls = coverIds.map(id => `${coverUrl}${id}-M.jpg`);
-    const coverResponses = await Promise.all(coverUrls.map(url => fetch(url)));
-    const coverBlobs = await Promise.all(coverResponses.map(response => response.blob()));
-    const coverUrlsWithBlobs = coverUrls.map((url, i) => ({ url, blob: coverBlobs[i] }));
-    setCovers(coverUrlsWithBlobs);
+    const coverUrl = 'https://covers.openlibrary.org/b/id/{id}-M.jpg';
+    const coverPromises = coverIds.map(id => fetch(coverUrl.replace('{id}', id)));
+    const responses = await Promise.all(coverPromises);
+    const blobs = await Promise.all(responses.map(response => response.blob()));
+    const urls = blobs.map(blob => URL.createObjectURL(blob));
+    const covers = coverIds.reduce((obj, id, index) => ({ ...obj, [id]: urls[index] }), {});
+    setCovers(covers);
   };
 
-  const isBookInList = (bookId) => {
-    // TODO: Implement a function to check if the book is already saved in the list
+  const isBookInList = (id) => {
     return false;
-  }
+  };
+
+  const handleSave = (book) => {
+    console.log(book);
+  };
 
   return (
     <div>
-      <input type="text" value={query} onChange={e => setQuery(e.target.value)} />
-      <button onClick={handleSearch}>Search</button>
-
-      <ul style={{ display: 'flex', flexWrap: 'wrap', listStyle: 'none', padding: 0 }}>
-        {results.map((work, i) => {
-          const cover = covers[i] || {};
-          return (
-            <li key={i} style={{ fontSize: '18px', margin: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              {cover.url && <img src={cover.url} alt="" style={{ height: '100px' }} />}
-              <BookSearchCard
-                book={work}
-                handleSave={() => {}}
-                setHoveredBookId={() => {}}
-                isBookInList={isBookInList}
-              />
-            </li>
-          );
-        })}
-      </ul>
+      <InputGroup>
+        <FormControl
+          type="text"
+          placeholder="Search books"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <Button onClick={handleSearch}>Search</Button>
+        <Button variant="secondary" onClick={() => setResults([])}>Clear</Button>
+      </InputGroup>
+      {results.length > 0 && (
+        <>
+          <ResultsContainer hoveredBookId={hoveredBookId}>
+            {results.map((result) => {
+              const book = {
+                id: result.cover_edition_key || result.key,
+                volumeInfo: {
+                  title: result.title,
+                  authors: result.authors || [],
+                  imageLinks: {
+                    thumbnail: covers[result.cover_id] || placeholderImage,
+                  },
+                },
+              };
+              return (
+                <BookCard
+                  key={book.id}
+                  book={book}
+                  handleSave={handleSave}
+                  setHoveredBookId={setHoveredBookId}
+                  isBookInList={isBookInList}
+                />
+              );
+            })}
+            </ResultsContainer>
+          <Button variant="secondary" onClick={() => setResults([])}>Clear</Button>
+        </>
+      )}
     </div>
   );
-}
-
+};
 export default Research;
