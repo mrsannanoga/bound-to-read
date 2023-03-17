@@ -7,6 +7,7 @@ import placeholderImage from "../assets/img/placeholder.webp";
 const CardContainer = styled.div`
   display: flex;
   margin: 1rem;
+  height:100%;
 `;
 
 const Card = styled(motion.div)`
