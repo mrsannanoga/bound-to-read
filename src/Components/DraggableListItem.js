@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import styled from "styled-components";
-import trashIcon from "../assets/img/trash.png";
-import shopIcon from "../assets/img/shop.png";
+import trashIcon from "../assets/img/trash.svg";
+import shopIcon from "../assets/img/shop.svg";
+import InfoIcon from "../assets/img/Info.svg";
+import BookInfoModal from "./BookInfoModal";
 
 const ListItem = styled.li`
   padding: 10px;
@@ -27,6 +29,7 @@ const DeleteButton = styled.button`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  background-color: transparent;
   width: 30px;
   height: 30px;
   border: none;
@@ -35,8 +38,8 @@ const DeleteButton = styled.button`
 
 const BuyButton = styled.a`
   display: inline-block;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   margin-right: 10px;
   background-image: url(${shopIcon});
   background-size: contain;
@@ -44,6 +47,22 @@ const BuyButton = styled.a`
   background-position: center;
   cursor: pointer;
 `;
+const InfoButton = styled.button`
+  background-image: url(${InfoIcon});
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+`;
+
+
+
+
 
 const BookCover = styled.img`
   height: 60px;
@@ -57,7 +76,12 @@ const DraggableListItem = ({
   thumbnail,
   onDelete,
   buyLink,
+  book,
 }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  };
   const [{ isDragging }, drag] = useDrag({
     type: "listItem",
     item: { id, index },
@@ -83,6 +107,9 @@ const DraggableListItem = ({
       <BookCover src={thumbnail} alt={text} />
       {text}
       <IconContainer>
+        <InfoButton onClick={toggleModal}></InfoButton>
+        {modalOpen && <BookInfoModal book={book} close={toggleModal} />}
+
         {buyLink ? (
           <BuyButton href={buyLink} target="_blank" rel="noopener noreferrer" />
         ) : null}
