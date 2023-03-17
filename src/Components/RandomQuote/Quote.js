@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { ImQuotesLeft } from "@react-icons/all-files/im/ImQuotesLeft";
 import { ImQuotesRight } from "@react-icons/all-files/im/ImQuotesRight";
-
+import {FiCopy} from "@react-icons/all-files/fi/FiCopy"
 import axios from "axios";
 import "./Quote.css";
 
@@ -49,6 +49,7 @@ const Quote = () => {
         <div className="buttonArea">
           <div className="btn">
             <button onClick={quoteAPI} className="getQuotebtn">Get a Quote</button>
+            <button className="copyQuotebtn"><i><FiCopy/></i></button>
           </div>
         </div>
       </div>
