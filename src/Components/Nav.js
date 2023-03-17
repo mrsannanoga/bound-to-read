@@ -30,7 +30,7 @@ const NavLink = styled(Link)`
   margin-right: 5rem;
 
   &:hover {
-    color: #ccc;
+    color: #FFD700;
   }
 `;
 

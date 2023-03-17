@@ -33,6 +33,7 @@ const Home = () => {
         <BackgroundImage />
       </BackgroundWrapper>
       <QuoteWrapper>
+        
         <Quote />
       </QuoteWrapper>
     </>
@@ -40,3 +41,5 @@ const Home = () => {
 };
 
 export default Home;
+
+

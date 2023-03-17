@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import BookCard from "../Components/BookCard";
 import BooksContext from "../Components/BooksContext";
+import { motion } from "framer-motion";
+import { pageAnimations } from "../Animations";
 
 import styled from "styled-components";
 
@@ -121,7 +123,8 @@ const Search = () => {
   }, []);
 
   return (
-    <SearchContainer>
+    <motion.div exit='exit' variants={pageAnimations} initial="hidden"animate="show" >
+      <SearchContainer>
       <form onSubmit={handleSearch}>
         <InputGroup>
           <SearchInput
@@ -149,6 +152,8 @@ const Search = () => {
         ))}
       </ResultsContainer>
     </SearchContainer>
+    </motion.div>
+    
   );
 };
 
