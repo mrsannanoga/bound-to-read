@@ -62,6 +62,7 @@ const List = () => {
               thumbnail={book.volumeInfo.imageLinks.thumbnail}
               onDelete={handleDelete}
               buyLink={book.saleInfo && book.saleInfo.buyLink}
+              book={book} 
             />
           ))}
         </ItemList>
