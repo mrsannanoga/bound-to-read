@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BookSearchCard from "../Components/BookSearchCard";
 
 // Import the necessary components
-import {  FormControl, Button } from 'react-bootstrap';
+import {   Button } from 'react-bootstrap';
 
 // Define the placeholder image
 const placeholderImage = 'https://via.placeholder.com/150';
@@ -16,19 +16,27 @@ const InputGroup = styled.div`
   flex-wrap: nowrap;
 `;
 
+const FormControl = styled.input`
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  
+`;
+
 const ClearButton = styled(Button)`
-background-color: #a83232;
+background-color: #f98203;
 color: white;
-font-size: 2rem;
+font-size: 1.5rem;
 padding: 0.5rem 1rem;
 border-radius: 5px;
 border: none;
 cursor: pointer;
 `;
 const SearchButton = styled(Button)`
-background-color: #fe7f2d;
+background-color: #020248;
 color: white;
-font-size: 2rem;
+font-size: 1.5rem;
 padding: 0.5rem 1rem;
 border-radius: 5px;
 border: none;
@@ -43,7 +51,7 @@ const ResultsContainer = styled.div`
   ${({ hoveredBookId }) =>
     hoveredBookId &&
     `> *:not([data-id="${hoveredBookId}"]) {
-      filter: blur(3px);
+      filter: blur(0px);
     }`
   };
 `;
@@ -127,4 +135,3 @@ const Research = () => {
     );
   };
   export default Research;
-  
