@@ -8,11 +8,13 @@ const ListItem = styled.li`
   padding: 10px;
   font-size: 30px;
   border: 1px solid #ccc;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   background-color: ${(props) => (props.isDragging ? "#ccc" : "white")};
+  margin-bottom: 20px;
 `;
 
 const IconContainer = styled.div`

@@ -12,6 +12,7 @@ const ListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  
 `;
 
 const Title = styled.h1`

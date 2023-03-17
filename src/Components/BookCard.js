@@ -6,7 +6,7 @@ import placeholderImage from "../assets/img/placeholder.webp";
 
 const CardContainer = styled.div`
   display: flex;
-  margin: 1rem;
+  margin: 0.5rem;
   height:100%;
 `;
 
@@ -16,7 +16,7 @@ const Card = styled(motion.div)`
   background-color: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  height: 350px;
+  height: 330px;
 `;
 const BookCover = styled.img`
   width: auto;
@@ -54,7 +54,7 @@ const SaveButton = styled.button`
   padding: 5px 10px;
   cursor: pointer;
   font-size: 16px;
-  margin-left: 10px;
+  margin-top: 1rem;
 `;
 
 const BookCard = ({ book, handleSave, setHoveredBookId, isBookInList }) => {
