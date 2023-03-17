@@ -24,7 +24,7 @@ const PageFooter = () => {
     <Footer className='text-center text-white'>
       <Container className='p-4'>
         <div className='text-center'>
-          &copy; 2023 Made with <Img src={require("../assets/img/heart.svg").default} alt="Heart" /> by Anna, Aleksandra, and Adrian
+          &copy; 2023 Made with <Img src={require("../assets/img/heart.svg").default} alt="Heart" /> by Anna, Aleksandra and Adrian
         </div>
       </Container>
     </Footer>
