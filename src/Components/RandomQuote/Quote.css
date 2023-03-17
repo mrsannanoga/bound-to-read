@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 5rem;
     margin-left: 2rem;
     width: 50rem;
     height: 40rem;
@@ -12,15 +12,16 @@
 .title{
     text-align: center;
     margin-bottom: 3rem;
+    text-transform: uppercase;
 }
 .title h5 {
     font-size: 2.5rem;
-    font-weight: 400;
-    color: white;
+    font-weight: 700;
+    color: rgb(255, 196, 0);
 }
 .mainContent{
     width: 100%;
-    height: 30rem;
+    height: fit-content;
     padding: 5rem 4rem;
     background-color: white;
     border-radius: 15px;
@@ -28,7 +29,7 @@
 }
 .textArea{
     text-align: center;
-    font-size: 25px;
+    font-size: 22px;
     color: black;
     line-height: 1.5;
 }
@@ -38,7 +39,7 @@
     color: navy;
     text-align: center;
     margin-top: 20px;
-    font-size: 25px;
+    font-size: large
 
 }
 .mainContent .buttonArea {
@@ -50,6 +51,7 @@
 .buttonArea .btn button{
     background-color: gray;
     color: white;
+    font-size: small;
     border-radius: 5px;
     cursor: pointer;
     border: none;
@@ -61,4 +63,8 @@ background-color: orange;
 }
 .buttonArea .btn button:hover{
 box-shadow: 0 0 31px rgba(0, 0, 0, 0.48);
+}
+
+i {
+    font-size: xx-large;
 }
