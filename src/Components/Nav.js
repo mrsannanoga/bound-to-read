@@ -7,12 +7,12 @@ const Navbar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: #020248
 `;
 
 const Logo = styled.div`
-  font-size: 4rem;
+  font-size: 3rem;
   color: #fff;
 `;
 
@@ -20,7 +20,7 @@ const NavLinks = styled.ul`
   display: flex;
   list-style-type: none;
   gap: 3rem;
-  font-size: 4rem;
+  font-size: 3.5rem;
 `;
 
 const NavLink = styled(Link)`

@@ -6,7 +6,7 @@ const Footer = styled.div`
 `;
 
 const Container = styled.div`
-  padding: 2rem;
+  padding: 1rem;
   font-size: 2.5rem;
   display: flex;
   justify-content: space-around;

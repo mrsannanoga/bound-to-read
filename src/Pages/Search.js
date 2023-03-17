@@ -14,7 +14,7 @@ const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   
   height: 100%;
   
@@ -31,8 +31,8 @@ const SearchInput = styled.input`
   padding: 0.5rem 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 2rem;
-  margin-right: 1rem;
+  font-size: 1.5rem;
+  
 `;
 const ButtonsContainer = styled.div`
   display: flex;
@@ -44,7 +44,7 @@ const ButtonsContainer = styled.div`
 const SearchButton = styled.button`
   background-color: #020248;
   color: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: none;
@@ -55,7 +55,7 @@ const SearchButton = styled.button`
 const ClearSearchButton = styled.button`
   background-color: #f98203;
   color: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: none;
