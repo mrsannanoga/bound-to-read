@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
+import { scaleUp } from "../Animations";
+import { motion } from "framer-motion";
 
 import Quote from "../Components/RandomQuote/Quote";
 
@@ -16,14 +18,19 @@ const QuoteWrapper = styled(Container)`
 const Home = () => {
   return (
     <>
-      
       <QuoteWrapper>
-        
-        <Quote />
+        <motion.div
+          variants={scaleUp}
+          initial="hidden"
+          animate="show"
+        >
+          <Quote />
+        </motion.div>
       </QuoteWrapper>
     </>
   );
 };
+
 
 export default Home;
 
