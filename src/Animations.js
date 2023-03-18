@@ -49,3 +49,9 @@ export const hoverVariants = {
       },
     },
   };
+
+  export const listItemVariants = {
+    initial: { opacity: 1, y: 0, rotateZ: 0 },
+    deleted: { opacity: 0, y: "10rem", rotateZ: 20 },
+  };
+  

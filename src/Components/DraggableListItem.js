@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import { motion } from "framer-motion";
 import styled from "styled-components";
 import trashIcon from "../assets/img/trash.svg";
 import shopIcon from "../assets/img/shop.svg";
 import InfoIcon from "../assets/img/Info.svg";
 import BookInfoModal from "./BookInfoModal";
+import { listItemVariants } from "../Animations";
 
-const ListItem = styled.li`
+const ListItem = styled(motion.li).attrs({ variants: listItemVariants })`
   padding: 10px;
   font-size: 30px;
   border: 1px solid #ccc;
@@ -61,10 +63,6 @@ const InfoButton = styled.button`
   margin-right: 10px;
 `;
 
-
-
-
-
 const BookCover = styled.img`
   height: 60px;
   margin-right: 10px;
@@ -79,6 +77,8 @@ const DraggableListItem = ({
   buyLink,
   book,
 }) => {
+  const [isDeleted, setIsDeleted] = useState(false);
+
   const [modalOpen, setModalOpen] = useState(false);
   const toggleModal = () => {
     setModalOpen(!modalOpen);
@@ -104,7 +104,17 @@ const DraggableListItem = ({
   drag(drop(ref));
 
   return (
-    <ListItem ref={ref} isDragging={isDragging}>
+    <ListItem
+    ref={ref}
+    isDragging={isDragging}
+    variants={listItemVariants}
+    animate={isDeleted ? "deleted" : "initial"}
+    onAnimationComplete={() => {
+      if (isDeleted) {
+        onDelete(id);
+      }
+    }}
+    >
       <BookCover src={thumbnail} alt={text} />
       {text}
       <IconContainer>
@@ -115,7 +125,7 @@ const DraggableListItem = ({
           <BuyButton href={buyLink} target="_blank" rel="noopener noreferrer" />
         ) : null}
 
-        <DeleteButton onClick={() => onDelete(id)}></DeleteButton>
+        <DeleteButton onClick={() => setIsDeleted(true)} />
       </IconContainer>
     </ListItem>
   );
