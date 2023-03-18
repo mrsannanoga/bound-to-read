@@ -14,7 +14,7 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  font-size: 3rem;
+  font-size: 2.5rem;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
@@ -36,6 +36,15 @@ const CloseButton = styled.button`
 `;
 
 const BookInfoModal = ({ book, close }) => {
+    const isbnInfo = book.volumeInfo.industryIdentifiers;
+
+  const displayISBN = (isbnArray) => {
+    return isbnArray
+      .map((isbn) => {
+        return `${isbn.type}: ${isbn.identifier}`;
+      })
+      .join(", ");
+  };
     return (
       <ModalOverlay onClick={close}>
         <ModalContent onClick={(e) => e.stopPropagation()}>
@@ -47,8 +56,7 @@ const BookInfoModal = ({ book, close }) => {
           <p><strong>Description:</strong> {book.volumeInfo.description}</p>
           <p><strong>Page Count:</strong> {book.volumeInfo.pageCount}</p>
           <p><strong>Categories:</strong> {book.volumeInfo.categories && book.volumeInfo.categories.join(", ")}</p>
-          <p><strong>Average Rating:</strong> {book.volumeInfo.averageRating}</p>
-          <p><strong>Ratings Count:</strong> {book.volumeInfo.ratingsCount}</p>
+          <p><strong>ISBN:</strong> {displayISBN(isbnInfo)}</p>
           <p><strong>Language:</strong> {book.volumeInfo.language}</p>
           <a href={book.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">Preview Book</a>
         </ModalContent>
