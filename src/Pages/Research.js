@@ -25,7 +25,7 @@ const FormControl = styled.input`
 `;
 
 const ClearButton = styled(Button)`
-background-color: #f98203;
+background-color: #7C3238;
 color: white;
 font-size: 1.5rem;
 padding: 0.5rem 1rem;
@@ -35,7 +35,7 @@ cursor: pointer;
 `;
 
 const SearchButton = styled(Button)`
-background-color: #020248;
+background-color: #1F271B;
 color: white;
 font-size: 1.5rem;
 padding: 0.5rem 1rem;
