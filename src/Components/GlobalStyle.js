@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import bgImage from "../assets/img/yellow-background.jpg";
 
 
+
 // This is a global style component that will be used to style the entire app
 const GlobalStyle = createGlobalStyle`
     * {

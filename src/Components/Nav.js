@@ -28,7 +28,6 @@ const NavLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   margin-right: 5rem;
-
   &:hover {
     color: #FFD700;
   }
@@ -49,4 +48,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
