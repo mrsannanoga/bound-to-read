@@ -14,6 +14,7 @@ const ListItem = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   background-color: ${(props) => (props.isDragging ? "#ccc" : "white")};
   margin-bottom: 20px;
