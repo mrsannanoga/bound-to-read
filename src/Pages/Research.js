@@ -33,6 +33,7 @@ border-radius: 5px;
 border: none;
 cursor: pointer;
 `;
+
 const SearchButton = styled(Button)`
 background-color: #020248;
 color: white;
@@ -42,6 +43,19 @@ border-radius: 5px;
 border: none;
 cursor: pointer;
 `;
+
+const BrowseButton = styled(Button)`
+  background-color: #6c757d;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+`;
+
+
+
 const ResultsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -62,6 +76,10 @@ const Research = () => {
   const [covers, setCovers] = useState([]);
   const [hoveredBookId, setHoveredBookId] = useState(null);
 
+  const handleBrowse = () => {
+    window.location.assign('https://openlibrary.org/');
+  };
+  
   const handleSearch = async () => {
     const url = `https://openlibrary.org/subjects/${encodeURIComponent(query)}.json?details=true`;
     const response = await fetch(url);
@@ -93,16 +111,18 @@ const Research = () => {
   
     return (
       <div>
-       <InputGroup>
-    <FormControl
-      type="text"
-      placeholder="Search books"
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-    />
-    <SearchButton onClick={handleSearch}>Search</SearchButton>
-    <ClearButton variant="secondary" onClick={() => setResults([])}>Clear</ClearButton>
-  </InputGroup>
+    <InputGroup>
+  <FormControl
+    type="text"
+    placeholder="Search books"
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
+  />
+  <SearchButton onClick={handleSearch}>Search</SearchButton>
+  <ClearButton variant="secondary" onClick={() => setResults([])}>Clear</ClearButton>
+  <BrowseButton onClick={handleBrowse}>Visit Open Library</BrowseButton>
+</InputGroup>
+
         {results.length > 0 && (
           <>
             <ResultsContainer hoveredBookId={hoveredBookId}>

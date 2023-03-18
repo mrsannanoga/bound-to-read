@@ -41,7 +41,7 @@ const Nav = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/search">Search</NavLink>
         <NavLink to="/list">My List</NavLink>
-        <NavLink to="/research">Find by Subject</NavLink>
+        <NavLink to="/research">Open Library</NavLink>
       </NavLinks>
     </Navbar>
   );
