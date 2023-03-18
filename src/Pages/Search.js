@@ -11,7 +11,6 @@ const SearchContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  
   height: 100%;
   
 `;
