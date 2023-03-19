@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { hoverVariants } from "../Animations";
 import placeholderImage from "../assets/img/placeholder.webp";
 
+
 const CardContainer = styled.div`
   display: flex;
   margin: 1rem;
@@ -20,32 +21,32 @@ const Card = styled(motion.div)`
 `;
 
 const BookCover = styled.img`
-  width: auto;
-  height: 200px;
-  object-fit: cover;
+width: auto;
+height: 200px;
+object-fit: cover;
 `;
 
 const BookTitle = styled.h3`
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+margin-bottom: 0.5rem;
+font-size: 1.1rem;
 `;
 
 const BookAuthor = styled.p`
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+margin-bottom: 0.5rem;
+font-size: 0.95rem;
 `;
 
 const BookInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 1rem;
 `;
 
 const BookDetails = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
+display: flex;
+justify-content: center;
+width: 100%;
 `;
 
 const SaveButton = styled.button`
@@ -63,7 +64,6 @@ const BookCard = ({ book, handleSave, setHoveredBookId, isBookInList }) => {
   const { title, authors, imageLinks } = book.volumeInfo;
   const authorNames = authors?.map((author) => author.name).join(", ");
   const thumbnail = imageLinks?.thumbnail || placeholderImage;
-
   return (
     <CardContainer>
       <Card
