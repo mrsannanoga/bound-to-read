@@ -49,14 +49,14 @@ const BookDetails = styled.div`
 `;
 
 const SaveButton = styled.button`
-  background-color: ${(props) => (props.saved ? "green" : "blue")};
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-left: 10px;
+background-color: ${(props) => (props.saved ? "#f9b528" : "#020248 ")};
+color: white;
+border: none;
+border-radius: 4px;
+padding: 5px 10px;
+cursor: pointer;
+font-size: 16px;
+margin-top: 1rem;
 `;
 
 const BookCard = ({ book, handleSave, setHoveredBookId, isBookInList }) => {
@@ -82,7 +82,7 @@ const BookCard = ({ book, handleSave, setHoveredBookId, isBookInList }) => {
             onClick={() => handleSave(book)}
             saved={isBookInList(book.id)}
           >
-            {isBookInList(book.id) ? "Saved" : "Save"}
+            {isBookInList(book.id) ? "Saved" : "Save to list"}
           </SaveButton>
         </BookDetails>
       </Card>

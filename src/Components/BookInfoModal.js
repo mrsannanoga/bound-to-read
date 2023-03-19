@@ -14,21 +14,42 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  font-size: 3rem;
+  font-size: 2.5rem;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   max-width: 80%;
   position: relative;
   h2 {
-    font-size: 4rem;
+    background-color: #f9b528;
+    color: white;
+    border-radius: 10px;
+    
+    padding: 5px 10px;
+    font-size: 3rem;
   }
 `;
+const Label = styled.span`
+  font-weight: bold;
+  background-color: #2941fa;
+  padding: 5px 10px;
+  width: 10rem;
+  border-radius: 4px;
+  margin-right: 8px;
+  color: white;
+`;
+
+const Value = styled.span`
+  font-size: 1.2rem;
+  display: inline-block;
+`;
+
+
 
 const CloseButton = styled.button`
   position: absolute;
   top: 20px;
-  right: 20px;
+  right: 40px;
   background: none;
   border: none;
   font-size: 50px;
@@ -36,24 +57,56 @@ const CloseButton = styled.button`
 `;
 
 const BookInfoModal = ({ book, close }) => {
-    return (
-      <ModalOverlay onClick={close}>
-        <ModalContent onClick={(e) => e.stopPropagation()}>
-          <CloseButton onClick={close}>&times;</CloseButton>
-          <h2>{book.volumeInfo.title}</h2>
-          <p><strong>Author(s):</strong> {book.volumeInfo.authors && book.volumeInfo.authors.join(", ")}</p>
-          <p><strong>Publisher:</strong> {book.volumeInfo.publisher}</p>
-          <p><strong>Published Date:</strong> {book.volumeInfo.publishedDate}</p>
-          <p><strong>Description:</strong> {book.volumeInfo.description}</p>
-          <p><strong>Page Count:</strong> {book.volumeInfo.pageCount}</p>
-          <p><strong>Categories:</strong> {book.volumeInfo.categories && book.volumeInfo.categories.join(", ")}</p>
-          <p><strong>Average Rating:</strong> {book.volumeInfo.averageRating}</p>
-          <p><strong>Ratings Count:</strong> {book.volumeInfo.ratingsCount}</p>
-          <p><strong>Language:</strong> {book.volumeInfo.language}</p>
-          <a href={book.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">Preview Book</a>
-        </ModalContent>
-      </ModalOverlay>
-    );
+    const isbnInfo = book.volumeInfo.industryIdentifiers;
+
+  const displayISBN = (isbnArray) => {
+    return isbnArray
+      .map((isbn) => {
+        return `${isbn.type}: ${isbn.identifier}`;
+      })
+      .join(", ");
   };
+  return (
+    <ModalOverlay onClick={close}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <CloseButton onClick={close}>&times;</CloseButton>
+        <h2>{book.volumeInfo.title}</h2>
+        <p>
+          <Label>Author(s):</Label>
+          <Value>{book.volumeInfo.authors && book.volumeInfo.authors.join(", ")}</Value>
+        </p>
+        <p>
+          <Label>Publisher:</Label>
+          <Value>{book.volumeInfo.publisher}</Value>
+        </p>
+        <p>
+          <Label>Published Date:</Label>
+          <Value>{book.volumeInfo.publishedDate}</Value>
+        </p>
+        <p>
+          <Label>Description:</Label>
+          <Value>{book.volumeInfo.description}</Value>
+        </p>
+        <p>
+          <Label>Page Count:</Label>
+          <Value>{book.volumeInfo.pageCount}</Value>
+        </p>
+        <p>
+          <Label>Categories:</Label>
+          <Value>{book.volumeInfo.categories && book.volumeInfo.categories.join(", ")}</Value>
+        </p>
+        <p>
+          <Label>ISBN:</Label>
+          <Value>{displayISBN(isbnInfo)}</Value>
+        </p>
+        <p>
+          <Label>Language:</Label>
+          <Value>{book.volumeInfo.language}</Value>
+        </p>
+        <a href={book.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">Preview Book</a>
+      </ModalContent>
+    </ModalOverlay>
+  );
+};
 
 export default BookInfoModal;

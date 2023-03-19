@@ -47,7 +47,7 @@ const BookDetails = styled.div`
 `;
 
 const SaveButton = styled.button`
-  background-color: ${(props) => (props.saved ? "green" : "blue")};
+  background-color: ${(props) => (props.saved ? "#f9b528" : "#020248 ")};
   color: white;
   border: none;
   border-radius: 4px;

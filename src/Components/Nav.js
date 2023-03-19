@@ -28,7 +28,6 @@ const NavLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   margin-right: 5rem;
-
   &:hover {
     color: #FFD700;
   }
@@ -42,11 +41,10 @@ const Nav = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/search">Search</NavLink>
         <NavLink to="/list">My List</NavLink>
-        <NavLink to="/research">Find by Subject</NavLink>
+        <NavLink to="/research">Open Library</NavLink>
       </NavLinks>
     </Navbar>
   );
 };
 
 export default Nav;
-

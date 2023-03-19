@@ -3,11 +3,7 @@ import BookCard from "../Components/BookCard";
 import BooksContext from "../Components/BooksContext";
 import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
-
-
 import styled from "styled-components";
-
-
 
 
 const SearchContainer = styled.div`
@@ -15,7 +11,6 @@ const SearchContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  
   height: 100%;
   
 `;
@@ -42,7 +37,7 @@ const ButtonsContainer = styled.div`
 `;
 
 const SearchButton = styled.button`
-  background-color: #020248;
+  background-color: #1F271B;
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
@@ -53,7 +48,7 @@ const SearchButton = styled.button`
 
 
 const ClearSearchButton = styled.button`
-  background-color: #f98203;
+  background-color: #7C3238;
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
