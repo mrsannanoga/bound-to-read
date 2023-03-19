@@ -102,3 +102,9 @@
 i {
     font-size: xx-large;
 }
+
+.copyStatus{
+    display: flex;
+    justify-content: center;
+    font-size: small;
+}
