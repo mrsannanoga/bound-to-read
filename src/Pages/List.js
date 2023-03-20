@@ -6,6 +6,7 @@ import DraggableListItem from "../Components/DraggableListItem";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
+import tornPaperBanner from "../assets/img/torn-paper.png";
 
 const ListContainer = styled.div`
   display: flex;
@@ -13,11 +14,27 @@ const ListContainer = styled.div`
   align-items: center;
   margin-top: 50px;
 `;
+const TitleContainer = styled.div`
+  position: relative;
+  width: 60%;
+  height: 100px;
+  background-image: url(${tornPaperBanner});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 30px;
+`;
 
 const Title = styled.h1`
-  font-size: 36px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #8e5c4c;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  font-family: 'Sacramento', cursive;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin: 0;
 `;
 
 const ItemList = styled.ul`
@@ -31,7 +48,7 @@ const ItemList = styled.ul`
 const List = () => {
   // Use the BooksContext
   const { savedBooks, setSavedBooks } = useContext(BooksContext);
-  
+
   const moveItem = (dragIndex, hoverIndex) => {
     const draggedItem = savedBooks[dragIndex];
     const newItems = [...savedBooks];
@@ -59,7 +76,10 @@ const List = () => {
     >
       <DndProvider backend={HTML5Backend}>
         <ListContainer>
-          <Title>To be read...</Title>
+          <TitleContainer>
+            <Title>To be read...</Title>
+          </TitleContainer>
+
           <ItemList>
             {savedBooks.map((book, index) => (
               <DraggableListItem
