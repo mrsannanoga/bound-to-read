@@ -5,14 +5,12 @@ import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
 import styled from "styled-components";
 
-
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
   height: 100%;
-  
 `;
 const InputGroup = styled.div`
   display: flex;
@@ -27,7 +25,6 @@ const SearchInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1.5rem;
-  
 `;
 const ButtonsContainer = styled.div`
   display: flex;
@@ -37,7 +34,7 @@ const ButtonsContainer = styled.div`
 `;
 
 const SearchButton = styled.button`
-  background-color: #B4A29E;
+  background-color: #b4a29e;
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
@@ -46,9 +43,8 @@ const SearchButton = styled.button`
   cursor: pointer;
 `;
 
-
 const ClearSearchButton = styled.button`
-  background-color: #7C3238;
+  background-color: #7c3238;
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
@@ -111,6 +107,7 @@ const Search = () => {
   // Clear search results function
   const clearSearchResults = () => {
     setSearchResults([]);
+    setSearchTerm("");
     localStorage.removeItem("searchResults");
   };
 
@@ -123,40 +120,41 @@ const Search = () => {
   }, []);
 
   return (
-    
-      <motion.div exit='exit' variants={pageAnimations} initial="hidden"animate="show" >
+    <motion.div
+      exit="exit"
+      variants={pageAnimations}
+      initial="hidden"
+      animate="show"
+    >
       <SearchContainer>
-      <form onSubmit={handleSearch}>
-        <InputGroup>
-          <SearchInput
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <ButtonsContainer>
-            <SearchButton type="submit">Search</SearchButton>
-            <ClearSearchButton onClick={clearSearchResults}>
-              Clear
-            </ClearSearchButton>
-          </ButtonsContainer>
-        </InputGroup>
-      </form>
-      <ResultsContainer hoveredBookId={hoveredBookId}>
-        {searchResults.map((book) => (
-          <BookCard
-            key={book.id}
-            book={book}
-            handleSave={handleSave}
-            setHoveredBookId={setHoveredBookId}
-            isBookInList={isBookInList}
-          />
-        ))}
-      </ResultsContainer>
-    </SearchContainer>
+        <form onSubmit={handleSearch}>
+          <InputGroup>
+            <SearchInput
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <ButtonsContainer>
+              <SearchButton type="submit">Search</SearchButton>
+              <ClearSearchButton onClick={clearSearchResults}>
+                Clear
+              </ClearSearchButton>
+            </ButtonsContainer>
+          </InputGroup>
+        </form>
+        <ResultsContainer hoveredBookId={hoveredBookId}>
+          {searchResults.map((book) => (
+            <BookCard
+              key={book.id}
+              book={book}
+              handleSave={handleSave}
+              setHoveredBookId={setHoveredBookId}
+              isBookInList={isBookInList}
+            />
+          ))}
+        </ResultsContainer>
+      </SearchContainer>
     </motion.div>
-    
-    
-    
   );
 };
 
