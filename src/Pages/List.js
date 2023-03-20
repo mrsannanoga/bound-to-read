@@ -17,7 +17,7 @@ const ListContainer = styled.div`
 const TitleContainer = styled.div`
   position: relative;
   width: 60%;
-  height: 100px;
+  height: 90px;
   background-image: url(${tornPaperBanner});
   background-size: contain;
   background-position: center;
@@ -35,12 +35,14 @@ const Title = styled.h1`
   font-family: 'Sacramento', cursive;
   font-weight: bold;
   margin: 0;
+  opacity: 0.8;
 `;
 
 const ItemList = styled.ul`
   list-style: none;
   margin-bottom: 30px;
   width: 30%;
+  color:#693e2f;
 
   border-radius: 8px;
 `;
