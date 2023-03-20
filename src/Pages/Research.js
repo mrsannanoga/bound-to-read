@@ -34,7 +34,7 @@ const ClearButton = styled(Button)`
 `;
 
 const SearchButton = styled(Button)`
-  background-color: #1F271B;
+  background-color: #B4A29E;
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
