@@ -65,13 +65,16 @@ const ReviewLink = styled.a`
 const BookInfoModal = ({ book, close }) => {
     const isbnInfo = book.volumeInfo.industryIdentifiers;
 
-  const displayISBN = (isbnArray) => {
-    return isbnArray
-      .map((isbn) => {
-        return `${isbn.type}: ${isbn.identifier}`;
-      })
-      .join(", ");
-  };
+    const displayISBN = (isbnArray) => {
+        if (!isbnArray) {
+          return "";
+        }
+        return isbnArray
+          .map((isbn) => {
+            return `${isbn.type}: ${isbn.identifier}`;
+          })
+          .join(", ");
+      };
   return (
     <ModalOverlay onClick={close}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
