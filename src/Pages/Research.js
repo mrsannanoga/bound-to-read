@@ -71,6 +71,7 @@ const ResultsContainer = styled.div`
     `> *:not([data-id="${hoveredBookId}"]) {
     filter: blur(0px);
   }`};
+  z-index: 1;
 `;
 
 const Research = () => {
@@ -108,7 +109,7 @@ const Research = () => {
   const handleBrowse = () => {
     window.open("https://openlibrary.org/", "_blank");
   };
-  
+
   const handleSearch = async () => {
     const url = `https://openlibrary.org/subjects/${encodeURIComponent(
       query
@@ -118,7 +119,7 @@ const Research = () => {
     // Extract the array of works from the response
     const works = data.works || [];
     setResults(works);
-  
+
     // Fetch cover images for each work and store them in the covers state variable
     const coverIds = works
       .map((work) => work.cover_id)
@@ -140,21 +141,21 @@ const Research = () => {
     setCoverUrls(covers);
     localStorage.setItem("coverUrls", JSON.stringify(covers));
   };
-  
+
   const handleClear = () => {
     setQuery("");
     setResults([]);
     localStorage.removeItem("results");
   };
-  
+
   const isBookInList = (id) => {
     return false;
   };
-  
+
   const handleSave = (book) => {
     console.log(book);
   };
-  
+
   return (
     <motion.div
       exit="exit"
@@ -180,13 +181,13 @@ const Research = () => {
         </ClearButton>
         <BrowseButton onClick={handleBrowse}>Visit Open Library</BrowseButton>
       </InputGroup>
-  
+
       {results.length > 0 && (
         <>
           <ResultsContainer hoveredBookId={hoveredBookId}>
             {results.map((result) => {
               const bookId = result.cover_edition_key || result.key;
-  
+
               const book = {
                 id: bookId,
                 volumeInfo: {
@@ -204,6 +205,7 @@ const Research = () => {
                   handleSave={handleSave}
                   setHoveredBookId={setHoveredBookId}
                   isBookInList={isBookInList}
+                  hoveredBookId={hoveredBookId}
                 />
               );
             })}
@@ -215,5 +217,3 @@ const Research = () => {
 };
 
 export default Research;
- 
-
