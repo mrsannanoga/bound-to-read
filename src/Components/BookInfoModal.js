@@ -21,7 +21,7 @@ const ModalContent = styled.div`
   max-width: 80%;
   position: relative;
   h2 {
-    background-color: #f9b528;
+    background-color: #8E5C4C;
     color: white;
     border-radius: 10px;
     
@@ -31,7 +31,7 @@ const ModalContent = styled.div`
 `;
 const Label = styled.span`
   font-weight: bold;
-  background-color: #2941fa;
+  background-color: #424242;
   padding: 5px 10px;
   width: 10rem;
   border-radius: 4px;
@@ -51,9 +51,15 @@ const CloseButton = styled.button`
   top: 20px;
   right: 40px;
   background: none;
+  color: #b4a29e;
   border: none;
   font-size: 50px;
   cursor: pointer;
+`;
+const ReviewLink = styled.a`
+    display: inline-block;
+    color: #8E5C4C;
+    text-decoration: none;
 `;
 
 const BookInfoModal = ({ book, close }) => {
@@ -103,7 +109,7 @@ const BookInfoModal = ({ book, close }) => {
           <Label>Language:</Label>
           <Value>{book.volumeInfo.language}</Value>
         </p>
-        <a href={book.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">Preview Book</a>
+        <ReviewLink href={book.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">Preview Book</ReviewLink>
       </ModalContent>
     </ModalOverlay>
   );
