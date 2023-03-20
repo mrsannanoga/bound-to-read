@@ -7,7 +7,7 @@ import placeholderImage from "../assets/img/placeholder.webp";
 const CardContainer = styled.div`
   display: flex;
   margin: 0.5rem;
-  height:100%;
+  height: 100%;
 `;
 
 const Card = styled(motion.div)`
@@ -71,7 +71,9 @@ const BookCard = ({ book, handleSave, setHoveredBookId, isBookInList }) => {
         <BookInfo>
           <BookTitle>{book.volumeInfo.title}</BookTitle>
           <BookDetails>
-            <BookAuthor>{authors.join(", ")}</BookAuthor>
+            <BookAuthor>
+              Author: {authors.length > 0 ? authors[0] : "Unknown"}
+            </BookAuthor>
           </BookDetails>
           <SaveButton
             onClick={() => handleSave(book)}

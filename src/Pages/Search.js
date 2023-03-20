@@ -63,7 +63,7 @@ const ResultsContainer = styled.div`
     hoveredBookId &&
     `
     > *:not([data-id="${hoveredBookId}"]) {
-      filter: blur(3px);
+      filter: blur(2px);
     }
   `}
 `;

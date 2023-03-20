@@ -3,12 +3,10 @@ import styled from "styled-components";
 import BookSearchCard from "../Components/BookSearchCard";
 import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
+import placeholderImage from "../assets/img/placeholder.webp";
 
 // Import the necessary components
 import { Button } from "react-bootstrap";
-
-// Define the placeholder image
-const placeholderImage = "https://via.placeholder.com/150";
 
 const InputGroup = styled.div`
   display: flex;
@@ -69,7 +67,7 @@ const ResultsContainer = styled.div`
   ${({ hoveredBookId }) =>
     hoveredBookId &&
     `> *:not([data-id="${hoveredBookId}"]) {
-    filter: blur(0px);
+    filter: blur(2px);
   }`};
   z-index: 1;
 `;

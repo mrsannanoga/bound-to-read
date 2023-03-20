@@ -33,6 +33,7 @@ const BookTitle = styled.h3`
 const BookAuthor = styled.p`
   margin-bottom: 0.5rem;
   font-size: 0.95rem;
+  text-align: center;
 `;
 
 const BookInfo = styled.div`
@@ -62,12 +63,14 @@ const SaveButton = styled.button`
 const BookSearchCard = ({
   book,
   handleSave,
-  hoveredBookId,
+
   setHoveredBookId,
   isBookInList,
 }) => {
   const { title, authors, imageLinks } = book.volumeInfo;
-  const authorNames = authors?.map((author) => author.name).join(", ");
+  const authorNames =
+    authors && authors.length > 0 ? authors[0].name : "Unknown Author";
+
   const thumbnail = imageLinks?.thumbnail || placeholderImage;
   return (
     <CardContainer
