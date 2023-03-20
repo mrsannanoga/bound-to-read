@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { hoverVariants } from "../Animations";
 import placeholderImage from "../assets/img/placeholder.webp";
+import LibraryIcon from "../../src/assets/img/library.svg";
 
 const CardContainer = styled.div`
   display: flex;
@@ -46,18 +47,32 @@ const BookInfo = styled.div`
 const BookDetails = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center; // Add this to center the button vertically
   width: 100%;
 `;
 
-const SaveButton = styled.button`
-  background-color: ${(props) => (props.saved ? "#424242" : "#8E5C4C")};
-  color: white;
+const OpenLibraryButton = styled.button`
+  background-color: #8e5c4c;
+
   border: none;
   border-radius: 4px;
   padding: 5px 10px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Add a box-shadow for the drop shadow effect
+  transition: all 0.2s ease; // Add a transition for a smooth effect
+
+  &:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6); // Increase the box-shadow when hovering
+  }
+
+  &:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); // Decrease the box-shadow when the button is active (pressed)
+    transform: translateY(
+      1px
+    ); // Add a slight downward movement to simulate a button press
+  }
 `;
 
 const BookSearchCard = ({
@@ -72,6 +87,7 @@ const BookSearchCard = ({
     authors && authors.length > 0 ? authors[0].name : "Unknown Author";
 
   const thumbnail = imageLinks?.thumbnail || placeholderImage;
+  const openLibraryUrl = `https://openlibrary.org/books/${book.id}`;
   return (
     <CardContainer
       data-id={book.id}
@@ -85,12 +101,11 @@ const BookSearchCard = ({
           <BookAuthor>Author: {authorNames}</BookAuthor>
         </BookInfo>
         <BookDetails>
-          <SaveButton
-            onClick={() => handleSave(book)}
-            saved={isBookInList(book.id)}
-          >
-            {isBookInList(book.id) ? "Saved" : "Save to list"}
-          </SaveButton>
+          <a href={openLibraryUrl} target="_blank" rel="noopener noreferrer">
+            <OpenLibraryButton>
+              <img src={LibraryIcon} alt="Library Icon" />
+            </OpenLibraryButton>
+          </a>
         </BookDetails>
       </Card>
     </CardContainer>
