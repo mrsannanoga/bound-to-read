@@ -1,6 +1,6 @@
 // import the createGlobalStyle function from styled-components
 import { createGlobalStyle } from "styled-components";
-import bgImage from "../assets/img/yellow-background.jpg";
+import bgImage from "../assets/img/bookbg.jpeg";
 
 
 

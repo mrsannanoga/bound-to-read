@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-
+import React from "react";
+import styled from "styled-components";
+import heart from "../assets/img/heart.svg";
 const Footer = styled.div`
-  background-color: rgb(2, 2, 72);
+  background-color: #424242;
 `;
 
 const Container = styled.div`
   padding: 1rem;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -15,16 +15,18 @@ const Container = styled.div`
 `;
 
 const Img = styled.img`
-  width: 2rem;
-  margin-right: 0.5rem;
+  vertical-align: bottom;
+  width: 3rem;
+  margin-right: 1rem;
 `;
 
 const PageFooter = () => {
   return (
-    <Footer className='text-center text-white'>
-      <Container className='p-4'>
-        <div className='text-center'>
-          &copy; 2023 Made with <Img src={require("../assets/img/heart.svg").default} alt="Heart" /> by Anna, Aleksandra and Adrian
+    <Footer className="text-center text-white">
+      <Container className="p-4">
+        <div className="text-center">
+          &copy; 2023 Made with <Img src={heart} alt="heart" /> by Anna,
+          Aleksandra and Adrian
         </div>
       </Container>
     </Footer>

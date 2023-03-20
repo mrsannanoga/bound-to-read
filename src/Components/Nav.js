@@ -1,42 +1,50 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import logo from "../assets/img/Storytelling.svg";
 
 const Navbar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  background-color: #020248
+
+  background-color: #424242;
 `;
 
 const Logo = styled.div`
-  font-size: 3rem;
-  color: #fff;
+  margin-left: 3rem;
+`;
+const Title = styled.h1`
+  font-size: 4rem;
+  color: #f1efef;
+  font-family: "Waiting for the Sunrise", cursive;
 `;
 
 const NavLinks = styled.ul`
   display: flex;
   list-style-type: none;
-  gap: 3rem;
-  font-size: 3.5rem;
+  gap: 2rem;
+  font-size: 3rem;
 `;
 
 const NavLink = styled(Link)`
-  color: #fff;
+  color: #B4A29E;
   cursor: pointer;
   text-decoration: none;
   margin-right: 5rem;
+
   &:hover {
-    color: #FFD700;
+    color: #f1efef;
   }
 `;
 
 const Nav = () => {
   return (
     <Navbar>
-      <Logo>Logo</Logo>
+      <Logo>
+        <img src={logo} alt="Logo" />
+      </Logo>
+      <Title>Bound to read</Title>
       <NavLinks>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/search">Search</NavLink>
