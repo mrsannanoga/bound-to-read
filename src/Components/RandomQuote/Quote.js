@@ -47,7 +47,7 @@ const Quote = () => {
     }
   };
   return (
-    <div className="container">
+    <div className="quoteContainer">
       <div className="mainContent">
         <div className="title">
           <h5>Quote Of The Day</h5>
