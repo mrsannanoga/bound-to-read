@@ -121,7 +121,6 @@ const Research = () => {
   const [results, setResults] = useState([]);
   const [covers, setCovers] = useState([]);
   const [hoveredBookId, setHoveredBookId] = useState(null);
-  const [coversUrl, setCoverUrls] = useState({});
 
   useEffect(() => {
     // Retrieve saved results from local storage
@@ -133,7 +132,6 @@ const Research = () => {
     // Retrieve saved cover URLs from local storage
     const savedCoverUrls = JSON.parse(localStorage.getItem("coverUrls"));
     if (savedCoverUrls) {
-      setCoverUrls(savedCoverUrls);
       const coverIds = Object.keys(savedCoverUrls);
       const covers = coverIds.reduce(
         (obj, id) => ({ ...obj, [id]: savedCoverUrls[id] }),
@@ -142,6 +140,7 @@ const Research = () => {
       setCovers(covers);
     }
   }, []);
+
 
   useEffect(() => {
     // Save results to local storage whenever the results state variable changes
@@ -180,7 +179,7 @@ const Research = () => {
       {}
     );
     setCovers(covers);
-    setCoverUrls(covers);
+    
     localStorage.setItem("coverUrls", JSON.stringify(covers));
   };
 

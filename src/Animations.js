@@ -54,4 +54,24 @@ export const hoverVariants = {
     initial: { opacity: 1, y: 0, rotateZ: 0 },
     deleted: { opacity: 0, y: "10rem", rotateZ: 20 },
   };
+
+  export const modalAnimation = {
+    hidden: { opacity: 1, scale: 0.6, y: -20,  },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      borderRadius: "10px",
+      transition: {
+        duration: 0.6,
+        type: "spring",
+        stiffness: 60,
+        damping: 6,
+        mass: 1,
+        bounce: 0.2,
+        
+      },
+    },
+  };
+  
   

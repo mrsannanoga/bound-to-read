@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+import { modalAnimation } from "../Animations";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -13,7 +15,7 @@ const ModalOverlay = styled.div`
   justify-content: center;
 `;
 
-const ModalContent = styled.div`
+const ModalContent = styled(motion.div)`
   font-size: 2.5rem;
   background-color: white;
   padding: 20px;
@@ -21,10 +23,10 @@ const ModalContent = styled.div`
   max-width: 80%;
   position: relative;
   h2 {
-    background-color: #8E5C4C;
+    background-color: #8e5c4c;
     color: white;
     border-radius: 10px;
-    
+
     padding: 5px 10px;
     font-size: 3rem;
   }
@@ -44,8 +46,6 @@ const Value = styled.span`
   display: inline-block;
 `;
 
-
-
 const CloseButton = styled.button`
   position: absolute;
   top: 20px;
@@ -57,32 +57,40 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 const ReviewLink = styled.a`
-    display: inline-block;
-    color: #8E5C4C;
-    text-decoration: none;
+  display: inline-block;
+  color: #8e5c4c;
+  text-decoration: none;
 `;
 
 const BookInfoModal = ({ book, close }) => {
-    const isbnInfo = book.volumeInfo.industryIdentifiers;
+  const isbnInfo = book.volumeInfo.industryIdentifiers;
 
-    const displayISBN = (isbnArray) => {
-        if (!isbnArray) {
-          return "";
-        }
-        return isbnArray
-          .map((isbn) => {
-            return `${isbn.type}: ${isbn.identifier}`;
-          })
-          .join(", ");
-      };
+  const displayISBN = (isbnArray) => {
+    if (!isbnArray) {
+      return "";
+    }
+    return isbnArray
+      .map((isbn) => {
+        return `${isbn.type}: ${isbn.identifier}`;
+      })
+      .join(", ");
+  };
   return (
     <ModalOverlay onClick={close}>
-      <ModalContent onClick={(e) => e.stopPropagation()}>
+      <ModalContent
+        onClick={(e) => e.stopPropagation()}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={modalAnimation}
+      >
         <CloseButton onClick={close}>&times;</CloseButton>
         <h2>{book.volumeInfo.title}</h2>
         <p>
           <Label>Author(s):</Label>
-          <Value>{book.volumeInfo.authors && book.volumeInfo.authors.join(", ")}</Value>
+          <Value>
+            {book.volumeInfo.authors && book.volumeInfo.authors.join(", ")}
+          </Value>
         </p>
         <p>
           <Label>Publisher:</Label>
@@ -102,7 +110,10 @@ const BookInfoModal = ({ book, close }) => {
         </p>
         <p>
           <Label>Categories:</Label>
-          <Value>{book.volumeInfo.categories && book.volumeInfo.categories.join(", ")}</Value>
+          <Value>
+            {book.volumeInfo.categories &&
+              book.volumeInfo.categories.join(", ")}
+          </Value>
         </p>
         <p>
           <Label>ISBN:</Label>
@@ -112,7 +123,13 @@ const BookInfoModal = ({ book, close }) => {
           <Label>Language:</Label>
           <Value>{book.volumeInfo.language}</Value>
         </p>
-        <ReviewLink href={book.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">Preview Book</ReviewLink>
+        <ReviewLink
+          href={book.volumeInfo.previewLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Preview Book
+        </ReviewLink>
       </ModalContent>
     </ModalOverlay>
   );
