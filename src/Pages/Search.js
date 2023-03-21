@@ -38,9 +38,23 @@ const SearchButton = styled.button`
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
+  margin: 0 1rem;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Add a box-shadow for the drop shadow effect
+  transition: all 0.2s ease; // Add a transition for a smooth effect
+
+  &:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6); // Increase the box-shadow when hovering
+  }
+
+  &:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); // Decrease the box-shadow when the button is active (pressed)
+    transform: translateY(
+      1px
+    ); // Add a slight downward movement to simulate a button press
+  }
 `;
 
 const ClearSearchButton = styled.button`
@@ -51,6 +65,19 @@ const ClearSearchButton = styled.button`
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Add a box-shadow for the drop shadow effect
+  transition: all 0.2s ease; // Add a transition for a smooth effect
+
+  &:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6); // Increase the box-shadow when hovering
+  }
+
+  &:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); // Decrease the box-shadow when the button is active (pressed)
+    transform: translateY(
+      1px
+    ); // Add a slight downward movement to simulate a button press
+  }
 `;
 
 const ResultsContainer = styled.div`

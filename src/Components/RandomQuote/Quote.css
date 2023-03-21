@@ -1,111 +1,113 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15rem;
-    margin-left: 4rem;
-    width: 30rem;
-    height: 20rem;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15rem;
+  margin-left: 4rem;
+  width: 30rem;
+  height: 20rem;
 }
 
 .title {
-    text-align: center;
-    margin-bottom: 3rem;
-    text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
 }
 
 .title h5 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #B4A29E;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #b4a29e;
 }
 
 .mainContent {
-    width: 100%;
-    height: fit-content;
-    padding: 5rem 4rem;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 25px 31px rgba(0, 0, 0, 0.481);
+  width: 100%;
+  height: fit-content;
+  padding: 5rem 4rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 25px 31px rgba(0, 0, 0, 0.481);
 }
 
 .textArea {
-    text-align: center;
-    font-size: 22px;
-    color: black;
-    line-height: 1.5;
+  text-align: center;
+  font-size: 22px;
+  color: black;
+  line-height: 1.5;
 }
 
 .mainContent .author {
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    color: #424242;
-    text-align: center;
-    margin-top: 20px;
-    font-size: large
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #424242;
+  text-align: center;
+  margin-top: 20px;
+  font-size: large;
 }
 
 .mainContent .buttonArea .btn {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 20px;
-    padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  padding: 10px;
 }
 
 .getQuotebtn {
-    background-color: gray;
-    color: white;
-    font-size: small;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    padding: 12px 15px;
+  background-color: gray;
+  color: white;
+  font-size: small;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 12px 15px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .getQuotebtn:active {
-    background-color: orange;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  transform: translateY(2px);
 }
 
 .getQuotebtn:hover {
-    box-shadow: 0 0 31px rgba(0, 0, 0, 0.48);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6);
 }
 
 .copyQuotebtn {
-    border: none;
-    background-color: transparent;
-    color: gray;
-    padding-left: 12px;
-    padding-right: 12px;
+  border: none;
+  background-color: transparent;
+  color: gray;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .copyQuotebtn:hover {
-    background-color: gray;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    padding: none;
-    box-shadow: 0 0 31px rgba(0, 0, 0, 0.48);
-    padding-left: 12px;
-    padding-right: 12px;
-    -o-transition: .5s;
-    -ms-transition: .5s;
-    -moz-transition: .5s;
-    -webkit-transition: .5s;
-    transition: .5s;
+  background-color: #b4a29e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: none;
+  box-shadow: 0 0 31px rgba(0, 0, 0, 0.3);
+  padding-left: 12px;
+  padding-right: 12px;
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 i {
-    font-size: xx-large;
-    color: #8E5C4C;
+  font-size: xx-large;
+  color: #8e5c4c;
 }
 
-.copyStatus{
-    display: flex;
-    justify-content: center;
-    font-size: small;
+.copyStatus {
+  display: flex;
+  justify-content: center;
+  font-size: small;
 }

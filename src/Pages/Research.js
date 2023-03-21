@@ -22,6 +22,9 @@ const FormControl = styled.input`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1.5rem;
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3); 
+  }
 `;
 
 const ClearButton = styled(Button)`
@@ -32,6 +35,19 @@ const ClearButton = styled(Button)`
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Add a box-shadow for the drop shadow effect
+  transition: all 0.2s ease; // Add a transition for a smooth effect
+
+  &:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6); // Increase the box-shadow when hovering
+  }
+
+  &:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); // Decrease the box-shadow when the button is active (pressed)
+    transform: translateY(
+      1px
+    ); // Add a slight downward movement to simulate a button press
+  }
 `;
 
 const SearchButton = styled(Button)`
@@ -39,18 +55,46 @@ const SearchButton = styled(Button)`
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
+  margin: 0 1rem;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Add a box-shadow for the drop shadow effect
+  transition: all 0.2s ease; // Add a transition for a smooth effect
+
+  &:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6); // Increase the box-shadow when hovering
+  }
+
+  &:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); // Decrease the box-shadow when the button is active (pressed)
+    transform: translateY(
+      1px
+    ); // Add a slight downward movement to simulate a button press
+  }
 `;
 const BrowseButton = styled(Button)`
   background-color: #6c757d;
   color: white;
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
+  margin-left:1rem;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); // Add a box-shadow for the drop shadow effect
+  transition: all 0.2s ease; // Add a transition for a smooth effect
+
+  &:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6); // Increase the box-shadow when hovering
+  }
+
+  &:active {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); // Decrease the box-shadow when the button is active (pressed)
+    transform: translateY(
+      1px
+    ); // Add a slight downward movement to simulate a button press
+  }
 
   /* Add the target="_blank" attribute */
   a {
@@ -164,7 +208,7 @@ const Research = () => {
       <InputGroup>
         <FormControl
           type="text"
-          placeholder="Search books"
+          placeholder="Search by subject"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {

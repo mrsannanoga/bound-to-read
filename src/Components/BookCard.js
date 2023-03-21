@@ -65,7 +65,7 @@ const SaveButton = styled.button`
   &:active {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); // Decrease the box-shadow when the button is active (pressed)
     transform: translateY(
-      1px
+      2px
     ); // Add a slight downward movement to simulate a button press
   }
 `;
