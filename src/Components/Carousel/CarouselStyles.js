@@ -2,56 +2,55 @@
 import styled from "styled-components";
 
 export const CarouselContainer = styled.div`
-
   width: 100%;
   max-width: 800px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.2); // Add a slight border
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Add a subtle box shadow
+  backdrop-filter: blur(3px); // Apply a blur effect to the background
 
   .slick-list {
     overflow: hidden;
   }
-  
-
-  
 
   .carousel-slide {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.3);
-    height: 300px;
     
+    
+    height: 300px;
+
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3); // Add a slight border
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Add a subtle box shadow
-    backdrop-filter: blur(3px); // Apply a blur effect to the background
   }
 
   .carousel-content {
-    
     text-align: center;
     p {
-        color: #d8d6d6;
-        text-shadow: 0 0 3px #000;
-        margin-top: 10px;
-        padding: 20px 20px;
-        font-size: 30px;
+      color: #d8d6d6;
+      text-shadow: 0 0 2px #000;
+      margin-top: 10px;
+      padding: 20px 20px;
+      font-size: 30px;
     }
     button {
-    background: #8E5C4C;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    font-size: 20px;
-    padding: 10px 20px;
-    margin-top: 60px;
-    cursor: pointer;
-    transition: background 0.3s;
+      background: #8e5c4c;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 10px 20px;
+      margin-top: 60px;
+      cursor: pointer;
+      transition: background 0.3s;
 
-    &:hover {
-      background: #693E2F;
+      &:hover {
+        background: #693e2f;
+      }
     }
-  }
   }
   .slick-arrow {
     width: 80px; // Adjust the width of the arrow buttons
@@ -72,6 +71,4 @@ export const CarouselContainer = styled.div`
   .slick-next {
     right: -80px; // Adjust the right arrow position
   }
-
-  
 `;
