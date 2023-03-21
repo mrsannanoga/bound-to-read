@@ -16,7 +16,7 @@ const ListContainer = styled.div`
 `;
 const TitleContainer = styled.div`
   position: relative;
-  width: 60%;
+  width: 100%;
   height: 90px;
   background-image: url(${tornPaperBanner});
   background-size: contain;
