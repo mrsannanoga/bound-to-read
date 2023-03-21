@@ -21,6 +21,11 @@ const AppContainer = styled.div`
 
 const Content = styled.div`
   flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
 `;
 
 function App() {

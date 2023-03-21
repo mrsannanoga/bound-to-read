@@ -1,24 +1,32 @@
 import React from "react";
 import styled from "styled-components";
-import { Container } from "react-bootstrap";
+// import { Container, Row, Col } from "react-bootstrap";
 import { scaleUp } from "../Animations";
 import { motion } from "framer-motion";
 
 import Quote from "../Components/RandomQuote/Quote";
+import { Container } from "react-bootstrap";
+import CarouselBanner from "../Components/Carousel/Carousel";
 
 
 
 
-
-const QuoteWrapper = styled(Container)`
-  position: relative;
-  z-index: 1;
+const Box = styled(Container)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const Home = () => {
   return (
-    <>
-      <QuoteWrapper>
+ <Box>
+  
+    <div>
+   
+        <CarouselBanner/>
+     
+      </div>
+      <div>
         <motion.div
           variants={scaleUp}
           initial="hidden"
@@ -26,12 +34,17 @@ const Home = () => {
         >
           <Quote />
         </motion.div>
-      </QuoteWrapper>
-    </>
+     
+      </div>
+      
+</Box>
+       
+
+
+
+    
   );
 };
 
 
 export default Home;
-
-
