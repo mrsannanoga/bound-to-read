@@ -2,13 +2,14 @@
 import styled from "styled-components";
 
 export const CarouselContainer = styled.div`
-margin-left: 10%;
+
   width: 100%;
   max-width: 800px;
 
   .slick-list {
-    overflow: visible;
+    overflow: hidden;
   }
+  
 
   
 
@@ -16,13 +17,18 @@ margin-left: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
+    background: rgba(0, 0, 0, 0.3);
     height: 300px;
+    
     color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3); // Add a slight border
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Add a subtle box shadow
+    backdrop-filter: blur(3px); // Apply a blur effect to the background
   }
 
   .carousel-content {
+    
     text-align: center;
     p {
         color: #d8d6d6;

@@ -24,7 +24,7 @@
 .mainContent {
   width: 100%;
   height: fit-content;
-  padding: 5rem 4rem;
+  padding: 4rem 3rem;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 25px 31px rgba(0, 0, 0, 0.481);
@@ -32,7 +32,7 @@
 
 .textArea {
   text-align: center;
-  font-size: 22px;
+  font-size: 25px;
   color: black;
   line-height: 1.5;
 }

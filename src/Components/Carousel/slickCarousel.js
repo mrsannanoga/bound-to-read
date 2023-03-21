@@ -8,12 +8,16 @@ const Carousel = ({ slides }) => {
     const settings = {
         dots: true,
         infinite: true,
+        useCSS: true,
+        useTransform: true,
+        swipeToSlide: true,
         speed: 800,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 6000,
         fade: true,
+        
       };
 
   return (
