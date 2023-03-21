@@ -1,50 +1,69 @@
+// Home.js
 import React from "react";
 import styled from "styled-components";
-// import { Container, Row, Col } from "react-bootstrap";
-import { scaleUp } from "../Animations";
 import { motion } from "framer-motion";
+import { Container } from "react-bootstrap";
 
 import Quote from "../Components/RandomQuote/Quote";
-import { Container } from "react-bootstrap";
-import CarouselBanner from "../Components/Carousel/Carousel";
-
-
-
+import Carousel from "../Components/Carousel/slickCarousel"; // Ensure correct import path
 
 const Box = styled(Container)`
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
+  gap: 1rem;
+  min-height:75vh;
+  
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+  max-width: 1400px;
+`;
+
+const QuoteWrapper = styled.div`
+  max-width: 600px;
+  width: 100%;
+  
 `;
 
 const Home = () => {
+  // Carousel slides data
+  const slides = [
+    {
+      text: "Get an exact match and search by title, author or subject",
+      buttonText: "Search",
+      link: "/Search",
+    },
+    {
+      text: "Search Open Library by subject, to check which books are available to borrow",
+      buttonText: "Open Library",
+      link: "/Research",
+    },
+  ];
+
   return (
- <Box>
-  
-    <div>
-   
-        <CarouselBanner/>
-     
-      </div>
-      <div>
-        <motion.div
-          variants={scaleUp}
-          initial="hidden"
-          animate="show"
-        >
-          <Quote />
+    <Box>
+      <ContentWrapper>
+        <QuoteWrapper>
+          <motion.div initial="hidden" animate="show">
+            <Quote />
+          </motion.div>
+        </QuoteWrapper>
+        {/* Add Carousel component */}
+        <motion.div>
+          <Carousel slides={slides} />
         </motion.div>
-     
-      </div>
-      
-</Box>
-       
-
-
-
-    
+      </ContentWrapper>
+    </Box>
   );
 };
 
-
 export default Home;
+

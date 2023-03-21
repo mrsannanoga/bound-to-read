@@ -1,7 +1,8 @@
 // import the createGlobalStyle function from styled-components
 import { createGlobalStyle } from "styled-components";
 import bgImage from "../assets/img/bookbg.jpeg";
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 // This is a global style component that will be used to style the entire app
