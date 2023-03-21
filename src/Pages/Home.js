@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Container } from "react-bootstrap";
-
+import { pageAnimations } from "../Animations";
 import Quote from "../Components/RandomQuote/Quote";
 import Carousel from "../Components/Carousel/slickCarousel"; // Ensure correct import path
 
@@ -52,12 +52,12 @@ const Home = () => {
     <Box>
       <ContentWrapper>
         <QuoteWrapper>
-          <motion.div initial="hidden" animate="show">
+          <motion.div initial="hidden" animate="show" variants={pageAnimations}>
             <Quote />
           </motion.div>
         </QuoteWrapper>
         {/* Add Carousel component */}
-        <motion.div>
+        <motion.div initial="hidden" animate="show" variants={pageAnimations}>
           <Carousel slides={slides} />
         </motion.div>
       </ContentWrapper>
