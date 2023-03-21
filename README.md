@@ -13,7 +13,7 @@ Bound to Read is a beautifully designed web application that helps book enthusia
 * [Acknowledgements](#acknowledgements)
 
 ## Screenshot 📸
-![Bound to Read screenshot](./src/assets/img/bound2read.png)
+![Bound to Read screenshot](./src/assets/img/screenshot.png)
 ## Deployment 🚀
 https://bound2read.netlify.app/
 
