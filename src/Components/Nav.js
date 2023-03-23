@@ -1,8 +1,12 @@
+// This is the navigation bar component
+
+// Importing required libraries and components
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import logo from "../assets/img/Storytelling.svg";
 
+// styled components
 const Navbar = styled.div`
   display: flex;
   justify-content: space-between;
@@ -38,6 +42,7 @@ const NavLink = styled(Link)`
   }
 `;
 
+// rendering the navigation bar
 const Nav = () => {
   return (
     <Navbar>

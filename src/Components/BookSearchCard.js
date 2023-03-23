@@ -1,3 +1,4 @@
+// Import necessary libraries and components
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -47,7 +48,7 @@ const BookInfo = styled.div`
 const BookDetails = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center; // Add this to center the button vertically
+  align-items: center; 
   width: 100%;
 `;
 

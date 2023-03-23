@@ -1,3 +1,6 @@
+// This is the page that displays the list of books that the user has saved to read later
+
+// Importing required libraries and components
 import React, { useContext } from "react";
 import BooksContext from "../Components/BooksContext";
 import { DndProvider } from "react-dnd";
@@ -8,6 +11,7 @@ import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
 import tornPaperBanner from "../assets/img/torn-paper.png";
 
+// styled components
 const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,7 +54,7 @@ const ItemList = styled.ul`
 const List = () => {
   // Use the BooksContext
   const { savedBooks, setSavedBooks } = useContext(BooksContext);
-
+  // Function to move the list item
   const moveItem = (dragIndex, hoverIndex) => {
     const draggedItem = savedBooks[dragIndex];
     const newItems = [...savedBooks];
@@ -58,7 +62,7 @@ const List = () => {
     newItems.splice(hoverIndex, 0, draggedItem);
     setSavedBooks(newItems);
   };
-
+  // Function to delete the list item
   const handleDelete = (id) => {
     setTimeout(() => {
       setSavedBooks((prevBooks) => {
@@ -70,6 +74,7 @@ const List = () => {
   };
 
   return (
+    // Render the list of saved books
     <motion.div
       exit="exit"
       variants={pageAnimations}

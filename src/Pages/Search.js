@@ -1,3 +1,6 @@
+// This is the search page component
+
+// Importing required libraries and components
 import React, { useState, useEffect, useContext } from "react";
 import BookCard from "../Components/BookCard";
 import BooksContext from "../Components/BooksContext";
@@ -5,6 +8,7 @@ import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
 import styled from "styled-components";
 
+// styled components
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -95,16 +99,18 @@ const ResultsContainer = styled.div`
   `}
 `;
 
+// Main Search component function
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const { setSavedBooks } = useContext(BooksContext);
   const { savedBooks } = useContext(BooksContext);
   const [hoveredBookId, setHoveredBookId] = useState(null);
+  // Function to check if a book is in the savedBooks list
   const isBookInList = (bookId) => {
     return savedBooks.some((book) => book.id === bookId);
   };
-
+  // Function to fetch data from the Google Books API
   const fetchData = async () => {
     const response = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&maxResults=20&key=${process.env.REACT_APP_GOOGLE_BOOKS_API_KEY}`,
@@ -121,31 +127,31 @@ const Search = () => {
       console.error("Failed to fetch data");
     }
   };
-
+  // Function to handle search input submission
   const handleSearch = (e) => {
     e.preventDefault();
     fetchData();
   };
-
+  // Function to handle saving a book
   const handleSave = (book) => {
     setSavedBooks((prevBooks) => [...prevBooks, book]);
   };
 
-  // Clear search results function
+  // Function to clear search results
   const clearSearchResults = () => {
     setSearchResults([]);
     setSearchTerm("");
     localStorage.removeItem("searchResults");
   };
-
+  // useEffect to check for search results in local storage on component mount
   useEffect(() => {
-    // Check if there are search results in local storage
+    
     const storedResults = localStorage.getItem("searchResults");
     if (storedResults) {
       setSearchResults(JSON.parse(storedResults));
     }
   }, []);
-
+  // Render the Search component
   return (
     <motion.div
       exit="exit"

@@ -31,7 +31,7 @@ export const CarouselContainer = styled.div`
     text-align: center;
     p {
       color: #e8e3e3;
-      text-shadow: 0px 1px 5px #000000;
+      text-shadow: 0px 1px 2px #000000;
       margin-top: 10px;
       padding: 20px 20px;
       font-size: 30px;

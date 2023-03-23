@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { CarouselContainer } from "./CarouselStyles";
 
 const Carousel = ({ slides }) => {
+    // Carousel settings
     const settings = {
         dots: true,
         infinite: true,

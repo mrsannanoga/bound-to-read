@@ -1,3 +1,5 @@
+/* Style for the Random Quote Generator */
+
 .quoteContainer {
   display: flex;
   flex-direction: column;

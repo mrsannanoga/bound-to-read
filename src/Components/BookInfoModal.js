@@ -1,8 +1,11 @@
+// Import necessary libraries and components
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { modalAnimation } from "../Animations";
 
+// Styled-components for the book info modal
+// ModalOverlay is the background overlay for the modal
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -14,6 +17,8 @@ const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+// ModalContent is the main container for the modal content
 
 const ModalContent = styled(motion.div)`
   font-size: 2.5rem;
@@ -31,6 +36,9 @@ const ModalContent = styled(motion.div)`
     font-size: 3rem;
   }
 `;
+
+// Label is the styled component for field labels in the modal
+
 const Label = styled.span`
   font-weight: bold;
   background-color: #424242;
@@ -41,11 +49,13 @@ const Label = styled.span`
   color: white;
 `;
 
+// Value is the styled component for field values in the modal
 const Value = styled.span`
   font-size: 1.2rem;
   display: inline-block;
 `;
 
+// CloseButton is the styled component for the close button in the modal
 const CloseButton = styled.button`
   position: absolute;
   top: 20px;
@@ -56,15 +66,18 @@ const CloseButton = styled.button`
   font-size: 50px;
   cursor: pointer;
 `;
+// ReviewLink is the styled component for the book preview link
 const ReviewLink = styled.a`
   display: inline-block;
   color: #8e5c4c;
   text-decoration: none;
 `;
 
+// BookInfoModal component receives a book object and close function as props
 const BookInfoModal = ({ book, close }) => {
+  // Retrieve ISBN information from the book object
   const isbnInfo = book.volumeInfo.industryIdentifiers;
-
+  // Function to display formatted ISBN information
   const displayISBN = (isbnArray) => {
     if (!isbnArray) {
       return "";
@@ -76,6 +89,7 @@ const BookInfoModal = ({ book, close }) => {
       .join(", ");
   };
   return (
+    // Render the modal overlay and content with click event listeners for closing
     <ModalOverlay onClick={close}>
       <ModalContent
         onClick={(e) => e.stopPropagation()}

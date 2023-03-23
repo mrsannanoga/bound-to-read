@@ -1,4 +1,8 @@
-//inspired by 
+// This component is used to fetch a random quote from an API and display it on the screen.
+// The user can also copy the quote to their clipboard.
+
+
+// Importing required libraries and components
 import React, { useEffect, useState } from "react";
 import { ImQuotesLeft } from "@react-icons/all-files/im/ImQuotesLeft";
 import { ImQuotesRight } from "@react-icons/all-files/im/ImQuotesRight";
@@ -10,7 +14,7 @@ const Quote = () => {
   const [quote, setQuote] = useState("");
   const [author, setAuthor] = useState("");
   const [copyStatus, setCopyStatus] = useState("");
-
+  // Function to fetch quote data from the API
   const quoteAPI = async () => {
     let quotesArray = [];
     try {
@@ -27,9 +31,11 @@ const Quote = () => {
       console.log(error);
     }
   };
+  // Fetch quote data on component mount
   useEffect(() => {
     quoteAPI();
   }, []);
+  // Function to copy quote and author to clipboard
   const copyToClipboard = () => {
     const textarea = document.createElement("textarea");
     textarea.textContent = `${quote} -${author}`;
@@ -46,6 +52,7 @@ const Quote = () => {
       document.body.removeChild(textarea);
     }
   };
+  // Render the Quote component
   return (
     <div className="quoteContainer">
       <div className="mainContent">

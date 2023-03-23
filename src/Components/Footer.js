@@ -1,10 +1,13 @@
+// This is the footer component
+
+// Importing required libraries and components
 import React from "react";
 import styled from "styled-components";
 import heart from "../assets/img/heart.svg";
 const Footer = styled.div`
   background-color: #424242;
 `;
-
+// styled components
 const Container = styled.div`
   padding: 1rem;
   font-size: 2.2rem;

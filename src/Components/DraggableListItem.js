@@ -1,3 +1,4 @@
+// Import necessary libraries and components
 import React, { useRef, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { motion } from "framer-motion";
@@ -8,6 +9,7 @@ import InfoIcon from "../assets/img/Info.svg";
 import BookInfoModal from "./BookInfoModal";
 import { listItemVariants } from "../Animations";
 
+// Styled-components for the draggable list item
 const ListItem = styled(motion.li).attrs({ variants: listItemVariants })`
   padding: 10px;
   font-size: 30px;
@@ -67,6 +69,8 @@ const BookCover = styled.img`
   height: 60px;
   margin-right: 10px;
 `;
+
+// DraggableListItem component receives several props to manage item data, drag and drop functionality, and interactions
 const DraggableListItem = ({
   id,
   text,
@@ -77,12 +81,15 @@ const DraggableListItem = ({
   buyLink,
   book,
 }) => {
+  // useState hooks for managing the deleted state and modal visibility
   const [isDeleted, setIsDeleted] = useState(false);
-
   const [modalOpen, setModalOpen] = useState(false);
+  // Function to toggle the modal visibility
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
+
+  // useDrag hook for handling drag functionality
   const [{ isDragging }, drag] = useDrag({
     type: "listItem",
     item: { id, index },
@@ -90,7 +97,7 @@ const DraggableListItem = ({
       isDragging: monitor.isDragging(),
     }),
   });
-
+  // useDrop hook for handling drop functionality
   const [, drop] = useDrop({
     accept: "listItem",
     hover(item, monitor) {
@@ -99,21 +106,21 @@ const DraggableListItem = ({
       item.index = index;
     },
   });
-
+  // useRef for the DOM element reference
   const ref = useRef(null);
   drag(drop(ref));
 
   return (
     <ListItem
-    ref={ref}
-    isDragging={isDragging}
-    variants={listItemVariants}
-    animate={isDeleted ? "deleted" : "initial"}
-    onAnimationComplete={() => {
-      if (isDeleted) {
-        onDelete(id);
-      }
-    }}
+      ref={ref}
+      isDragging={isDragging}
+      variants={listItemVariants}
+      animate={isDeleted ? "deleted" : "initial"}
+      onAnimationComplete={() => {
+        if (isDeleted) {
+          onDelete(id);
+        }
+      }}
     >
       <BookCover src={thumbnail} alt={text} />
       {text}

@@ -1,13 +1,15 @@
+// This is the Open Library page component
+
+// Importing required libraries and components
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import BookSearchCard from "../Components/BookSearchCard";
 import { motion } from "framer-motion";
 import { pageAnimations } from "../Animations";
 import placeholderImage from "../assets/img/placeholder.webp";
-
-// Import the necessary components
 import { Button } from "react-bootstrap";
 
+// styled components
 const InputGroup = styled.div`
   display: flex;
   align-items: center;
@@ -115,6 +117,7 @@ const ResultsContainer = styled.div`
   }`};
   z-index: 1;
 `;
+
 
 const Research = () => {
   const [query, setQuery] = useState("");

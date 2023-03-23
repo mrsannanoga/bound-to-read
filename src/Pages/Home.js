@@ -1,4 +1,6 @@
-// Home.js
+// This is the home page of the app
+
+// Importing required libraries and components
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -6,7 +8,7 @@ import { Container } from "react-bootstrap";
 import { pageAnimations } from "../Animations";
 import Quote from "../Components/RandomQuote/Quote";
 import Carousel from "../Components/Carousel/slickCarousel"; // Ensure correct import path
-
+// styled components
 const Box = styled(Container)`
   display: flex;
   flex-direction: row;
