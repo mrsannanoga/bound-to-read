@@ -47,7 +47,9 @@ const Nav = () => {
   return (
     <Navbar>
       <Logo>
+        <NavLink to="/">
         <img src={logo} alt="Logo" />
+        </NavLink>
       </Logo>
       <Title>Bound to read</Title>
       <NavLinks>
