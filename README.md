@@ -5,12 +5,12 @@ Bound to Read is a beautifully designed web application that helps book enthusia
 
 ## List of content
 * [Description](#description)
-* [Screenshot](#screenshot)
-* [Deployment](#deployment)
-* [Features](#features)
-* [Technology](#technology)
-* [Contributors](#contributors)
-* [Acknowledgements](#acknowledgements)
+* [Screenshot](#screenshot-)
+* [Deployment](#deployment-)
+* [Features](#features-)
+* [Technology](#technology-)
+* [Contributors](#contributors-)
+* [Acknowledgements](#acknowledgements-)
 
 ## Screenshot 📸
 ![Bound to Read screenshot](./src/assets/img/screenshot.png)
